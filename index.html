@@ -25,17 +25,13 @@
 html{scroll-behavior:smooth;font-size:15px;}
 body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
 
-/* ═══════════════════════════════════════
-   VISTA ROUTER
-═══════════════════════════════════════ */
+/* ═══ VIEW ROUTER ═══ */
 .view { display:none; }
 .view.active { display:block; }
 .dash-view { display:none; }
 .dash-view.active { display:flex; min-height:100vh; }
 
-/* ═══════════════════════════════════════
-   SHARED COMPONENTS
-═══════════════════════════════════════ */
+/* ═══ SHARED COMPONENTS ═══ */
 .btn-primary { background:var(--g2); color:var(--cream); padding:.85rem 2rem; border:none; border-radius:2px; font-family:'Outfit',sans-serif; font-size:.88rem; font-weight:500; cursor:pointer; transition:all var(--transition); display:inline-block; text-decoration:none; }
 .btn-primary:hover { background:var(--g3); transform:translateY(-1px); }
 .btn-secondary { background:transparent; color:var(--g2); padding:.85rem 2rem; border:1.5px solid var(--g2); border-radius:2px; font-family:'Outfit',sans-serif; font-size:.88rem; font-weight:500; cursor:pointer; transition:all var(--transition); display:inline-block; text-decoration:none; }
@@ -47,15 +43,15 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .section-h em { font-style:italic; color:var(--gold); }
 .section-sub { color:var(--muted); font-size:.92rem; line-height:1.75; max-width:520px; margin-top:1rem; }
 
-/* Toast global */
+/* Toast */
 .toast { position:fixed; bottom:2rem; right:2rem; background:var(--g2); border:1px solid rgba(200,168,75,.3); border-radius:var(--radius); padding:.9rem 1.2rem; display:flex; align-items:center; gap:.8rem; z-index:9999; transform:translateY(80px); opacity:0; transition:all .3s; max-width:320px; }
 .toast.show { transform:translateY(0); opacity:1; }
 .toast-msg { font-size:.82rem; color:var(--cream); line-height:1.4; }
 
 /* Modal */
-.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); z-index:500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; }
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.75); backdrop-filter:blur(6px); z-index:500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; padding:1rem; }
 .modal-overlay.visible { opacity:1; pointer-events:all; }
-.modal { background:var(--g1); border:1px solid rgba(200,168,75,.25); border-radius:8px; width:440px; max-height:90vh; overflow-y:auto; }
+.modal { background:var(--g1); border:1px solid rgba(200,168,75,.25); border-radius:8px; width:440px; max-width:100%; max-height:90vh; overflow-y:auto; }
 .modal-header { padding:1.2rem 1.4rem; border-bottom:1px solid rgba(255,255,255,.07); display:flex; justify-content:space-between; align-items:center; }
 .modal-title { font-family:'Playfair Display',serif; font-size:1rem; color:var(--cream); }
 .modal-close { background:none; border:none; color:rgba(245,240,230,.4); font-size:1.2rem; cursor:pointer; }
@@ -64,38 +60,92 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .modal-footer { padding:1rem 1.4rem; border-top:1px solid rgba(255,255,255,.07); display:flex; gap:.7rem; justify-content:flex-end; }
 
 /* ═══════════════════════════════════════
-   ① LANDING PAGE — PÚBLICA
+   ① LANDING PAGE
 ═══════════════════════════════════════ */
 /* NAV */
-.nav-public { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(253,250,244,.93); backdrop-filter:blur(14px); border-bottom:1px solid rgba(200,168,75,.18); }
-.logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--g2); letter-spacing:-.02em; }
+.nav-public { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1rem 3rem; background:rgba(253,250,244,.93); backdrop-filter:blur(14px); border-bottom:1px solid rgba(200,168,75,.18); gap:1rem; }
+.logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--g2); letter-spacing:-.02em; white-space:nowrap; }
 .logo em { font-style:italic; color:var(--gold); }
-.nav-links { list-style:none; display:flex; gap:2.2rem; }
-.nav-links a { text-decoration:none; color:var(--muted); font-size:.8rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; transition:color var(--transition); }
+.nav-links { list-style:none; display:flex; gap:1.8rem; }
+.nav-links a { text-decoration:none; color:var(--muted); font-size:.78rem; font-weight:500; letter-spacing:.05em; text-transform:uppercase; transition:color var(--transition); }
 .nav-links a:hover { color:var(--g2); }
-.nav-right { display:flex; gap:.8rem; align-items:center; }
-.nav-demo { font-size:.78rem; color:var(--muted); cursor:pointer; border:none; background:none; font-family:'Outfit',sans-serif; padding:.4rem .8rem; border-radius:2px; transition:all var(--transition); }
+.nav-right { display:flex; gap:.6rem; align-items:center; flex-shrink:0; }
+.nav-demo { font-size:.75rem; color:var(--muted); cursor:pointer; border:none; background:none; font-family:'Outfit',sans-serif; padding:.4rem .7rem; border-radius:2px; transition:all var(--transition); white-space:nowrap; }
 .nav-demo:hover { color:var(--g2); background:var(--cream2); }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:.5rem; }
+.hamburger span { width:22px; height:2px; background:var(--g2); border-radius:2px; transition:all .3s; }
 
 /* HERO */
 .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:72px; }
 .hero-left { padding:7rem 3rem 4rem 5rem; display:flex; flex-direction:column; justify-content:center; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(3rem,4.5vw,5.2rem); font-weight:400; line-height:1.06; color:var(--g1); animation:rise .8s ease both; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,4.5vw,5.2rem); font-weight:400; line-height:1.06; color:var(--g1); animation:rise .8s ease both; }
 .hero h1 em { font-style:italic; color:var(--gold); }
 .hero-desc { color:var(--muted); font-size:1rem; line-height:1.75; max-width:440px; margin-top:1.5rem; animation:rise .8s .15s ease both; }
 .hero-btns { display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap; animation:rise .8s .25s ease both; }
-.hero-kpis { display:flex; gap:3rem; margin-top:4rem; animation:rise .8s .35s ease both; }
+.hero-kpis { display:flex; gap:3rem; margin-top:4rem; animation:rise .8s .35s ease both; flex-wrap:wrap; gap:2rem; }
 .kpi-val { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--g2); line-height:1; }
 .kpi-label { font-size:.75rem; color:var(--muted); margin-top:.3rem; letter-spacing:.04em; }
-.hero-right { background:var(--g1); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; animation:fadeIn .8s ease both; }
-.hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 65% 30%, rgba(200,168,75,.14), transparent 60%); }
 
-/* Booking card in hero */
-.booking-card { position:relative; width:340px; background:rgba(255,255,255,.06); backdrop-filter:blur(24px); border:1px solid rgba(200,168,75,.25); border-radius:8px; padding:1.8rem; animation:floatY 5s ease-in-out infinite; }
+/* HERO RIGHT — video/image */
+.hero-right {
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  animation:fadeIn .8s ease both;
+  min-height:400px;
+  background:
+    /* Sky gradient */
+    linear-gradient(180deg,
+      #0a1a10 0%,
+      #0d2218 25%,
+      #143020 45%,
+      #1a3a28 60%,
+      #0f2016 80%,
+      #07130d 100%
+    );
+}
+/* Atmospheric golf landscape via CSS */
+.hero-right::after {
+  content:'';
+  position:absolute; inset:0; z-index:0;
+  background:
+    /* Stars/bokeh effect */
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 75% 5%, rgba(255,255,255,.3), transparent),
+    radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 92% 12%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 8% 35%, rgba(255,255,255,.3), transparent),
+    /* Moonlight glow */
+    radial-gradient(ellipse at 80% 15%, rgba(200,168,75,.18) 0%, transparent 40%),
+    /* Fairway green glow at bottom */
+    radial-gradient(ellipse at 50% 100%, rgba(37,77,56,.8) 0%, rgba(15,31,22,.6) 40%, transparent 70%),
+    /* Distant tree line */
+    radial-gradient(ellipse at 20% 62%, rgba(10,28,18,.9) 0%, transparent 30%),
+    radial-gradient(ellipse at 70% 65%, rgba(10,28,18,.9) 0%, transparent 25%),
+    radial-gradient(ellipse at 50% 68%, rgba(12,30,20,.85) 0%, transparent 35%);
+  pointer-events:none;
+}
+.hero-right-overlay {
+  position:absolute; inset:0; z-index:1;
+  background: linear-gradient(135deg,
+    rgba(7,19,13,.55) 0%,
+    rgba(7,19,13,.2) 50%,
+    rgba(200,168,75,.05) 100%
+  );
+  pointer-events:none;
+}
+.hero-right-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:2rem; width:100%; padding:2rem; }
+.booking-card { width:340px; max-width:100%; background:rgba(10,22,15,.72); backdrop-filter:blur(24px); border:1px solid rgba(200,168,75,.3); border-radius:8px; padding:1.8rem; animation:floatY 5s ease-in-out infinite; }
+.hero-golf-badge { display:flex; align-items:center; gap:.8rem; background:rgba(200,168,75,.12); border:1px solid rgba(200,168,75,.3); border-radius:6px; padding:.8rem 1.2rem; backdrop-filter:blur(12px); }
+.hgb-icon { font-size:1.8rem; }
+.hgb-text { color:var(--cream); font-size:.82rem; line-height:1.4; }
+.hgb-text strong { color:var(--gold2); display:block; font-size:.9rem; }
+.split-badge { position:absolute; top:-1rem; right:-1rem; background:var(--g4); border:2px solid var(--g0); color:var(--cream); font-size:.65rem; padding:.35rem .7rem; border-radius:16px; font-weight:500; white-space:nowrap; }
 .bc-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.4rem; }
 .bc-title { font-family:'Playfair Display',serif; color:var(--cream); font-size:1.05rem; }
 .bc-step { font-size:.68rem; color:rgba(245,240,230,.3); letter-spacing:.08em; }
-.bc-pro { display:flex; align-items:center; gap:.8rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:4px; padding:.85rem; margin-bottom:.9rem; }
+.bc-pro { display:flex; align-items:center; gap:.8rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09); border-radius:4px; padding:.85rem; margin-bottom:.9rem; }
 .bc-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--g3),var(--gold)); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
 .bc-name { font-family:'Playfair Display',serif; color:var(--cream); font-size:.95rem; }
 .bc-role { color:var(--gold2); font-size:.68rem; margin-top:.1rem; }
@@ -118,7 +168,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .bc-btn:hover { background:var(--gold2); }
 .bc-methods { display:flex; gap:.4rem; justify-content:center; margin-top:.7rem; }
 .bc-method { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); color:rgba(245,240,230,.45); font-size:.65rem; padding:.22rem .55rem; border-radius:2px; }
-.split-badge { position:absolute; top:-1rem; right:-1rem; background:var(--g4); border:2px solid var(--g0); color:var(--cream); font-size:.65rem; padding:.35rem .7rem; border-radius:16px; font-weight:500; white-space:nowrap; }
 
 /* SEARCH */
 .search-section { background:var(--cream); padding:2.8rem 5rem; border-top:1px solid var(--cream2); }
@@ -186,6 +235,38 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .btn-ver { background:transparent; color:var(--g3); border:1px solid var(--g3); padding:.38rem .85rem; border-radius:2px; font-size:.75rem; font-weight:500; cursor:pointer; transition:all var(--transition); }
 .btn-ver:hover { background:var(--g2); color:var(--cream); border-color:var(--g2); }
 
+/* ═══════════════════════════════════════
+   TORNEOS SECTION (NEW)
+═══════════════════════════════════════ */
+.torneos-section { padding:6rem 5rem; background:var(--g1); position:relative; overflow:hidden; }
+.torneos-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 20% 50%, rgba(200,168,75,.08), transparent 60%); pointer-events:none; }
+.torneos-section .section-h { color:var(--cream); }
+.torneos-section .section-sub { color:rgba(245,240,230,.45); }
+.torneos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
+.torneo-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:6px; overflow:hidden; transition:all .25s; cursor:pointer; position:relative; }
+.torneo-card:hover { border-color:rgba(200,168,75,.35); transform:translateY(-3px); background:rgba(255,255,255,.06); }
+.torneo-card.featured { border-color:rgba(200,168,75,.4); background:rgba(200,168,75,.05); }
+.torneo-banner { height:120px; display:flex; align-items:center; justify-content:center; font-size:4rem; position:relative; }
+.torneo-status { position:absolute; top:.8rem; right:.8rem; font-size:.62rem; font-weight:600; padding:.22rem .65rem; border-radius:10px; letter-spacing:.06em; text-transform:uppercase; }
+.t-status-open { background:rgba(90,171,116,.25); border:1px solid rgba(90,171,116,.5); color:var(--g6); }
+.t-status-soon { background:rgba(200,168,75,.2); border:1px solid rgba(200,168,75,.4); color:var(--gold2); }
+.t-status-full { background:rgba(192,57,43,.15); border:1px solid rgba(192,57,43,.3); color:#e07070; }
+.torneo-body { padding:1.2rem; }
+.torneo-name { font-family:'Playfair Display',serif; color:var(--cream); font-size:1.1rem; font-weight:400; margin-bottom:.4rem; }
+.torneo-meta { display:flex; flex-direction:column; gap:.3rem; margin-bottom:.9rem; }
+.torneo-meta-row { display:flex; align-items:center; gap:.5rem; font-size:.75rem; color:rgba(245,240,230,.45); }
+.torneo-meta-row span { font-size:.85rem; }
+.torneo-prizes { display:flex; gap:.4rem; margin-bottom:.9rem; }
+.prize-chip { display:flex; align-items:center; gap:.3rem; background:rgba(200,168,75,.1); border:1px solid rgba(200,168,75,.2); border-radius:3px; padding:.25rem .55rem; font-size:.68rem; color:var(--gold2); }
+.torneo-footer { display:flex; justify-content:space-between; align-items:center; padding-top:.8rem; border-top:1px solid rgba(255,255,255,.07); }
+.torneo-players { font-size:.72rem; color:rgba(245,240,230,.35); }
+.torneo-players strong { color:rgba(245,240,230,.7); }
+.torneo-btn { background:var(--gold); color:var(--g1); border:none; padding:.38rem .85rem; border-radius:2px; font-size:.75rem; font-weight:600; cursor:pointer; transition:all var(--transition); }
+.torneo-btn:hover { background:var(--gold2); }
+.torneo-btn.outline { background:transparent; color:var(--gold2); border:1px solid rgba(200,168,75,.4); }
+.torneo-btn.outline:hover { background:var(--gold); color:var(--g1); border-color:var(--gold); }
+.torneos-cta { margin-top:2.5rem; text-align:center; }
+
 /* GAMIFICATION PREVIEW */
 .gami-section { background:linear-gradient(160deg,#0f2418 0%,#1a3a2a 50%,#0d1f14 100%); padding:7rem 5rem; position:relative; overflow:hidden; }
 .gami-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 20% 80%, rgba(124,92,191,.12), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(200,168,75,.08), transparent 50%); }
@@ -215,8 +296,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .badge-chip.earned { border-color:var(--gold); background:rgba(200,168,75,.15); }
 .badge-chip.locked { border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.03); filter:grayscale(1) opacity(.3); }
 .badge-chip.new { border-color:#a78bfa; background:rgba(124,92,191,.2); animation:glowPurple 2s ease-in-out infinite; }
-
-/* Skills */
 .skills-panel { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:6px; overflow:hidden; margin-bottom:1rem; }
 .skill-cat-head { padding:1.1rem 1.4rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,.05); }
 .skill-cat-info { display:flex; align-items:center; gap:.7rem; }
@@ -284,22 +363,87 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .cta-btns { display:flex; justify-content:center; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
 
 /* FOOTER */
-footer { background:var(--g0); padding:2.5rem 5rem; display:flex; justify-content:space-between; align-items:center; }
+footer { background:var(--g0); padding:2.5rem 5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
 footer .logo { font-size:1.35rem; }
-.footer-links { display:flex; gap:2rem; }
+.footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
 .footer-links a { color:rgba(245,240,230,.3); font-size:.75rem; text-decoration:none; transition:color var(--transition); }
 .footer-links a:hover { color:rgba(245,240,230,.6); }
 footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 
 /* ═══════════════════════════════════════
+   REGISTRO — FLOW (NEW)
+═══════════════════════════════════════ */
+.reg-modal { width:560px; }
+.reg-type-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-bottom:1.4rem; }
+.reg-type-card { border:1.5px solid rgba(255,255,255,.1); border-radius:6px; padding:1.2rem; cursor:pointer; text-align:center; transition:all .2s; }
+.reg-type-card:hover { border-color:rgba(200,168,75,.4); background:rgba(200,168,75,.05); }
+.reg-type-card.selected { border-color:var(--gold); background:rgba(200,168,75,.1); }
+.reg-type-icon { font-size:2rem; margin-bottom:.5rem; display:block; }
+.reg-type-name { font-family:'Playfair Display',serif; color:var(--cream); font-size:.9rem; }
+.reg-type-desc { font-size:.68rem; color:rgba(245,240,230,.35); margin-top:.2rem; }
+.reg-form { display:flex; flex-direction:column; gap:.8rem; }
+.reg-form-row { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+.reg-field { display:flex; flex-direction:column; gap:.3rem; }
+.reg-lbl { font-size:.65rem; color:rgba(245,240,230,.35); letter-spacing:.06em; text-transform:uppercase; }
+.reg-input { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:3px; padding:.55rem .75rem; color:var(--cream); font-family:'Outfit',sans-serif; font-size:.85rem; outline:none; transition:border-color .2s; }
+.reg-input:focus { border-color:rgba(200,168,75,.45); }
+.reg-input::placeholder { color:rgba(245,240,230,.25); }
+.reg-select { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:3px; padding:.55rem .75rem; color:var(--cream); font-family:'Outfit',sans-serif; font-size:.85rem; outline:none; transition:border-color .2s; }
+.reg-select option { background:var(--g1); color:var(--cream); }
+.reg-steps { display:flex; gap:.4rem; margin-bottom:1.4rem; }
+.reg-step-dot { height:4px; flex:1; border-radius:2px; background:rgba(255,255,255,.1); transition:background .3s; }
+.reg-step-dot.active { background:var(--gold); }
+.reg-divider { height:1px; background:rgba(255,255,255,.07); margin:.4rem 0; }
+.reg-btn-row { display:flex; gap:.7rem; }
+.reg-back { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:rgba(245,240,230,.6); font-family:'Outfit',sans-serif; font-size:.85rem; padding:.65rem 1.2rem; border-radius:3px; cursor:pointer; transition:all .2s; }
+.reg-back:hover { background:rgba(255,255,255,.1); }
+.reg-next { flex:1; background:var(--gold); color:var(--g1); border:none; font-family:'Outfit',sans-serif; font-size:.88rem; font-weight:600; padding:.7rem; border-radius:3px; cursor:pointer; transition:background .2s; }
+.reg-next:hover { background:var(--gold2); }
+.reg-success { text-align:center; padding:1rem; }
+.reg-success-icon { font-size:3rem; margin-bottom:.8rem; }
+.reg-success-title { font-family:'Playfair Display',serif; color:var(--cream); font-size:1.4rem; margin-bottom:.5rem; }
+.reg-success-sub { color:rgba(245,240,230,.45); font-size:.85rem; line-height:1.6; }
+
+/* ═══════════════════════════════════════
+   PERFILES (CLUB / PRO / ALUMNO)
+═══════════════════════════════════════ */
+/* Public profile view */
+.profile-view { background:var(--white); min-height:100vh; }
+.profile-hero { background:var(--g1); padding:5rem 5rem 3rem; position:relative; overflow:hidden; }
+.profile-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 30%, rgba(200,168,75,.12), transparent 55%); }
+.profile-back { position:relative; z-index:1; color:rgba(245,240,230,.5); font-size:.8rem; cursor:pointer; border:none; background:none; font-family:'Outfit',sans-serif; padding:0; margin-bottom:1.5rem; display:inline-flex; align-items:center; gap:.4rem; }
+.profile-back:hover { color:var(--cream); }
+.profile-hero-inner { position:relative; z-index:1; display:flex; gap:2rem; align-items:flex-end; flex-wrap:wrap; }
+.profile-avatar-big { width:96px; height:96px; border-radius:50%; background:linear-gradient(135deg,var(--g3),var(--gold)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; border:3px solid rgba(200,168,75,.4); flex-shrink:0; }
+.profile-info { flex:1; }
+.profile-type-badge { display:inline-block; font-size:.62rem; font-weight:700; padding:.2rem .65rem; border-radius:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.5rem; }
+.badge-club { background:rgba(42,80,56,.6); border:1px solid rgba(90,171,116,.4); color:var(--g6); }
+.badge-pro { background:rgba(200,168,75,.2); border:1px solid rgba(200,168,75,.5); color:var(--gold2); }
+.badge-alumno { background:rgba(124,92,191,.2); border:1px solid rgba(124,92,191,.4); color:#c4b5fd; }
+.profile-name { font-family:'Playfair Display',serif; color:var(--cream); font-size:2rem; font-weight:400; }
+.profile-subtitle { color:rgba(245,240,230,.45); font-size:.9rem; margin-top:.25rem; }
+.profile-stats-row { display:flex; gap:2rem; margin-top:1.5rem; flex-wrap:wrap; }
+.p-stat { text-align:center; }
+.p-stat-val { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--cream); }
+.p-stat-lbl { font-size:.68rem; color:rgba(245,240,230,.35); margin-top:.15rem; }
+.profile-tabs { background:var(--white); border-bottom:1px solid var(--cream2); display:flex; padding:0 5rem; gap:0; }
+.profile-tab { padding:1rem 1.5rem; cursor:pointer; font-size:.82rem; color:var(--muted); border-bottom:2px solid transparent; transition:all .2s; white-space:nowrap; }
+.profile-tab:hover { color:var(--g2); }
+.profile-tab.active { color:var(--g2); border-bottom-color:var(--g2); font-weight:600; }
+.profile-content { padding:3rem 5rem; max-width:1100px; }
+.profile-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+.profile-card { background:var(--white); border:1px solid var(--cream2); border-radius:6px; padding:1.4rem; }
+.profile-card-title { font-family:'Playfair Display',serif; color:var(--g2); font-size:1.1rem; margin-bottom:1rem; }
+.profile-tag-row { display:flex; gap:.4rem; flex-wrap:wrap; }
+.profile-tag { background:var(--cream); color:var(--g3); font-size:.75rem; padding:.25rem .6rem; border-radius:12px; border:1px solid var(--cream2); }
+.rating-big { font-family:'Playfair Display',serif; font-size:2.5rem; color:var(--g2); }
+.rating-stars { color:var(--gold); font-size:1.1rem; margin-left:.5rem; }
+.rating-sub { font-size:.8rem; color:var(--muted); margin-top:.2rem; }
+
+/* ═══════════════════════════════════════
    ② DASHBOARD DEL CLUB
 ═══════════════════════════════════════ */
-.sidebar {
-  width:var(--sidebar); flex-shrink:0;
-  background:var(--g0); border-right:1px solid rgba(200,168,75,.1);
-  display:flex; flex-direction:column;
-  position:sticky; top:0; height:100vh; overflow-y:auto;
-}
+.sidebar { width:var(--sidebar); flex-shrink:0; background:var(--g0); border-right:1px solid rgba(200,168,75,.1); display:flex; flex-direction:column; position:sticky; top:0; height:100vh; overflow-y:auto; }
 .sb-logo { padding:1.4rem 1.2rem 1rem; border-bottom:1px solid rgba(255,255,255,.05); }
 .sb-entity { padding:.8rem 1.2rem 1rem; border-bottom:1px solid rgba(255,255,255,.05); }
 .sb-entity-name { font-size:.78rem; font-weight:600; color:var(--cream); line-height:1.3; }
@@ -314,103 +458,70 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .sb-user { display:flex; align-items:center; gap:.55rem; }
 .sb-avatar { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--g3),var(--gold)); display:flex; align-items:center; justify-content:center; font-size:.75rem; }
 .sb-user-name { font-size:.75rem; color:rgba(245,240,230,.5); }
-
-/* Dashboard main */
 .dash-main { flex:1; display:flex; flex-direction:column; overflow:hidden; background:var(--g1); }
-.topbar { background:var(--g0); border-bottom:1px solid rgba(255,255,255,.06); padding:.85rem 2rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+.topbar { background:var(--g0); border-bottom:1px solid rgba(255,255,255,.06); padding:.85rem 2rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; flex-wrap:wrap; gap:.5rem; }
 .topbar-title { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--cream); }
 .topbar-title em { font-style:italic; color:var(--gold); }
-.tb-right { display:flex; align-items:center; gap:1rem; }
-.tb-date { font-size:.75rem; color:rgba(245,240,230,.35); }
-.tb-notif { position:relative; cursor:pointer; }
-.tb-badge { position:absolute; top:-4px; right:-4px; background:#e74c3c; color:white; font-size:.52rem; width:13px; height:13px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; }
-.dash-content { padding:1.8rem; flex:1; overflow-y:auto; }
-
-/* KPI strip */
-.kpi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.8rem; }
-.kpi-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); padding:1.1rem 1.3rem; position:relative; overflow:hidden; transition:border-color var(--transition); }
-.kpi-card:hover { border-color:rgba(200,168,75,.25); }
-.kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
-.kpi-card.k1::before { background:var(--gold); }
-.kpi-card.k2::before { background:var(--g4); }
-.kpi-card.k3::before { background:#e74c3c; }
-.kpi-card.k4::before { background:#9333ea; }
-.kpi-lbl { font-size:.65rem; color:rgba(245,240,230,.3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.45rem; }
-.kpi-val { font-family:'Playfair Display',serif; font-size:1.9rem; color:var(--cream); line-height:1; }
-.kpi-sub { font-size:.68rem; color:rgba(245,240,230,.3); margin-top:.35rem; }
-.kpi-trend { position:absolute; top:.9rem; right:.9rem; font-size:.68rem; padding:.18rem .45rem; border-radius:3px; }
-.trend-up { background:rgba(58,122,82,.2); color:var(--g6); }
-.trend-warn { background:rgba(192,57,43,.2); color:#e07070; }
-
-/* Dashboard grid */
-.dash-grid { display:grid; grid-template-columns:1fr 320px; gap:1.4rem; }
-.dash-col { display:flex; flex-direction:column; gap:1.4rem; }
-
-/* Panels */
-.panel { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:8px; overflow:hidden; }
-.panel-head { padding:1rem 1.3rem; border-bottom:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:space-between; }
+.tb-right { display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; }
+.tb-date { font-size:.72rem; color:rgba(245,240,230,.25); }
+.tb-notif { position:relative; cursor:pointer; font-size:1.1rem; }
+.tb-badge { position:absolute; top:-4px; right:-6px; background:var(--red); color:white; font-size:.55rem; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.dash-content { padding:1.5rem 2rem; overflow-y:auto; flex:1; }
+.kpi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.5rem; }
+.kpi-card { padding:1.2rem; border-radius:5px; border:1px solid; }
+.kpi-card.k1 { background:rgba(42,80,56,.2); border-color:rgba(58,122,82,.25); }
+.kpi-card.k2 { background:rgba(37,99,235,.1); border-color:rgba(37,99,235,.2); }
+.kpi-card.k3 { background:rgba(192,57,43,.09); border-color:rgba(192,57,43,.2); }
+.kpi-card.k4 { background:rgba(200,168,75,.08); border-color:rgba(200,168,75,.2); }
+.kpi-lbl { font-size:.62rem; color:rgba(245,240,230,.3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.4rem; }
+.kpi-card .kpi-val { font-family:'Playfair Display',serif; font-size:2rem; color:var(--cream); line-height:1; }
+.kpi-sub { font-size:.65rem; color:rgba(245,240,230,.22); margin-top:.3rem; }
+.kpi-trend { font-size:.68rem; margin-top:.5rem; font-weight:500; }
+.trend-up { color:var(--g5); }
+.trend-warn { color:var(--amber); }
+.dash-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:1.2rem; }
+.dash-col { display:flex; flex-direction:column; gap:1.2rem; }
+.panel { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:5px; overflow:hidden; }
+.panel-head { padding:1rem 1.2rem; border-bottom:1px solid rgba(255,255,255,.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; }
 .panel-title { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--cream); }
-.panel-sub { font-size:.68rem; color:rgba(245,240,230,.3); margin-top:.1rem; }
-.panel-body { padding:1.3rem; }
-
-/* Week calendar */
-.cal-controls { display:flex; align-items:center; gap:.8rem; }
-.cal-btn { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:var(--cream); width:26px; height:26px; border-radius:3px; cursor:pointer; font-size:.85rem; display:flex; align-items:center; justify-content:center; }
-.cal-btn:hover { background:rgba(255,255,255,.1); }
-.cal-label { font-size:.82rem; color:var(--cream); font-weight:500; }
-.add-slot-btn { background:var(--gold); color:var(--g1); border:none; border-radius:3px; padding:.35rem .85rem; font-size:.75rem; font-weight:600; cursor:pointer; transition:background var(--transition); }
-.add-slot-btn:hover { background:var(--gold2); }
-
-.week-grid { display:grid; grid-template-columns:52px repeat(7,1fr); margin-top:1rem; border:1px solid rgba(255,255,255,.06); border-radius:4px; overflow:hidden; font-size:.6rem; }
-.wg-corner { background:rgba(0,0,0,.2); border-right:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); }
-.wg-day { background:rgba(0,0,0,.15); border-right:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.06); padding:.45rem .2rem; text-align:center; }
-.wg-day-name { color:rgba(245,240,230,.3); text-transform:uppercase; letter-spacing:.05em; }
-.wg-day-num { font-family:'Playfair Display',serif; font-size:1rem; color:var(--cream); line-height:1.2; }
-.wg-day.today .wg-day-num,.wg-day.today .wg-day-name { color:var(--gold); }
-.wg-time { background:rgba(0,0,0,.1); border-right:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.04); padding:.3rem .4rem; color:rgba(245,240,230,.25); text-align:right; }
-.slot { border-right:1px solid rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.04); padding:2px; cursor:pointer; transition:filter var(--transition); }
-.slot:hover { filter:brightness(1.35); }
-.slot-in { border-radius:2px; min-height:30px; display:flex; flex-direction:column; justify-content:center; padding:0 3px; }
-.slot.free .slot-in { background:rgba(30,77,49,.7); border:1px solid rgba(58,122,82,.4); }
-.slot.taken .slot-in { background:rgba(37,77,56,.5); border:1px solid rgba(37,77,56,.3); }
-.slot.external .slot-in { background:rgba(122,92,26,.5); border:1px solid rgba(200,168,75,.3); }
-.slot.closed .slot-in { background:rgba(15,15,15,.8); border:1px solid rgba(255,255,255,.04); }
-.slot.empty .slot-in { background:transparent; border:none; }
-.slot-state { font-weight:600; letter-spacing:.02em; }
-.slot.free .slot-state { color:var(--g6); }
-.slot.taken .slot-state { color:rgba(245,240,230,.35); }
-.slot.external .slot-state { color:var(--gold2); }
-.slot.closed .slot-state { color:rgba(245,240,230,.12); }
-.slot-name { color:rgba(245,240,230,.3); margin-top:1px; font-size:.52rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.slot-legend { display:flex; gap:1.1rem; margin-top:.9rem; flex-wrap:wrap; }
-.leg-item { display:flex; align-items:center; gap:.35rem; font-size:.65rem; color:rgba(245,240,230,.4); }
-.leg-dot { width:9px; height:9px; border-radius:2px; flex-shrink:0; }
-
-/* Puestos */
-.puestos-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.45rem; }
-.ps { border-radius:4px; padding:.45rem .3rem; text-align:center; cursor:pointer; transition:transform var(--transition); border:1px solid; }
-.ps:hover { transform:scale(1.06); }
-.ps-num { font-family:'Playfair Display',serif; font-size:.95rem; line-height:1; }
-.ps-lbl { font-size:.52rem; margin-top:.15rem; letter-spacing:.04em; }
-.ps.ps-free { background:rgba(30,77,49,.4); border-color:rgba(58,122,82,.3); }
-.ps.ps-free .ps-num { color:var(--g6); } .ps.ps-free .ps-lbl { color:rgba(90,171,116,.45); }
-.ps.ps-ext { background:rgba(122,92,26,.4); border-color:rgba(200,168,75,.3); }
-.ps.ps-ext .ps-num { color:var(--gold2); } .ps.ps-ext .ps-lbl { color:rgba(226,196,106,.4); }
-.ps.ps-taken { background:rgba(20,40,28,.6); border-color:rgba(255,255,255,.05); }
-.ps.ps-taken .ps-num { color:rgba(245,240,230,.25); } .ps.ps-taken .ps-lbl { color:rgba(245,240,230,.18); }
-.ps.ps-closed { background:rgba(10,10,10,.6); border-color:rgba(255,255,255,.03); cursor:default; }
-.ps.ps-closed .ps-num { color:rgba(245,240,230,.08); } .ps.ps-closed .ps-lbl { color:rgba(245,240,230,.06); }
-
-/* SE = slot editor */
-.se-tabs { display:flex; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:1.1rem; }
-.se-tab { padding:.45rem .9rem; font-size:.75rem; cursor:pointer; color:rgba(245,240,230,.35); border-bottom:2px solid transparent; transition:all var(--transition); }
+.panel-sub { font-size:.65rem; color:rgba(245,240,230,.25); margin-top:.15rem; }
+.panel-body { padding:1rem 1.2rem; }
+.cal-controls { display:flex; align-items:center; gap:.5rem; }
+.cal-btn { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:var(--cream); width:28px; height:28px; border-radius:3px; cursor:pointer; font-size:.9rem; }
+.cal-label { font-size:.75rem; color:rgba(245,240,230,.45); white-space:nowrap; }
+.add-slot-btn { background:var(--gold); color:var(--g1); border:none; padding:.28rem .65rem; border-radius:2px; font-family:'Outfit',sans-serif; font-size:.7rem; font-weight:600; cursor:pointer; }
+.week-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-bottom:.8rem; }
+.slot { border-radius:2px; overflow:hidden; cursor:pointer; transition:filter .15s; min-height:55px; }
+.slot:hover { filter:brightness(1.25); }
+.slot.free { background:rgba(30,77,49,.7); border:1px solid rgba(58,122,82,.4); }
+.slot.taken { background:rgba(37,77,56,.5); border:1px solid rgba(58,122,82,.2); }
+.slot.external { background:rgba(122,92,26,.5); border:1px solid rgba(200,168,75,.3); }
+.slot.closed { background:rgba(15,15,15,.8); border:1px solid rgba(255,255,255,.04); cursor:default; }
+.slot.empty { background:transparent; border:1px dashed rgba(255,255,255,.05); cursor:default; }
+.slot-in { padding:.3rem .35rem; height:100%; }
+.slot-state { font-size:.55rem; font-weight:600; color:rgba(245,240,230,.5); text-transform:uppercase; letter-spacing:.05em; }
+.slot-name { font-size:.6rem; color:rgba(245,240,230,.35); margin-top:.15rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.slot-legend { display:flex; gap:1rem; flex-wrap:wrap; }
+.leg-item { display:flex; align-items:center; gap:.3rem; font-size:.62rem; color:rgba(245,240,230,.3); }
+.leg-dot { width:8px; height:8px; border-radius:2px; }
+.puestos-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; margin-bottom:.6rem; }
+.ps { border-radius:3px; padding:.6rem .4rem; text-align:center; cursor:pointer; transition:all .15s; }
+.ps-num { font-size:.68rem; font-weight:600; color:rgba(245,240,230,.5); }
+.ps-lbl { font-size:.55rem; color:rgba(245,240,230,.3); margin-top:.15rem; letter-spacing:.04em; }
+.ps.ps-free { background:rgba(30,77,49,.6); border:1px solid rgba(58,122,82,.3); }
+.ps.ps-ext { background:rgba(122,92,26,.45); border:1px solid rgba(200,168,75,.25); }
+.ps.ps-ext .ps-lbl { color:var(--gold2); }
+.ps.ps-taken { background:rgba(37,77,56,.45); border:1px solid rgba(58,122,82,.2); }
+.ps.ps-closed { background:rgba(20,20,20,.6); border:1px solid rgba(255,255,255,.04); cursor:default; opacity:.5; }
+.se-tabs { display:flex; border-bottom:1px solid rgba(255,255,255,.07); margin-bottom:1.1rem; }
+.se-tab { padding:.55rem .9rem; font-size:.75rem; color:rgba(245,240,230,.3); cursor:pointer; border-bottom:2px solid transparent; transition:all .2s; }
 .se-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
 .se-field { margin-bottom:.9rem; }
 .se-lbl { font-size:.65rem; color:rgba(245,240,230,.35); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.35rem; display:block; }
 .se-input { width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:3px; padding:.5rem .75rem; color:var(--cream); font-family:'Outfit',sans-serif; font-size:.8rem; outline:none; transition:border-color var(--transition); }
 .se-input:focus { border-color:rgba(200,168,75,.4); }
 .se-row2 { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
-.days-picker { display:flex; gap:.35rem; }
+.days-picker { display:flex; gap:.35rem; flex-wrap:wrap; }
 .day-btn { width:30px; height:30px; border-radius:50%; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:rgba(245,240,230,.35); font-size:.7rem; font-weight:500; cursor:pointer; transition:all var(--transition); display:flex; align-items:center; justify-content:center; }
 .day-btn.on { background:var(--gold); color:var(--g1); border-color:var(--gold); font-weight:700; }
 .puestos-picker { display:grid; grid-template-columns:repeat(5,1fr); gap:.35rem; }
@@ -425,8 +536,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .se-btn-secondary:hover { background:rgba(255,255,255,.1); }
 .se-btn-danger { background:rgba(192,57,43,.12); color:#e07070; border:1px solid rgba(192,57,43,.25); }
 .se-btn-danger:hover { background:rgba(192,57,43,.25); }
-
-/* Alerts */
 .alert-list { display:flex; flex-direction:column; gap:.55rem; }
 .alert-item { display:flex; gap:.7rem; padding:.75rem; border-radius:3px; border-left:3px solid; }
 .alert-item.danger { background:rgba(192,57,43,.08); border-left-color:#e74c3c; }
@@ -437,8 +546,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .alert-text { font-size:.75rem; color:rgba(245,240,230,.6); line-height:1.5; }
 .alert-text strong { color:var(--cream); }
 .alert-action { margin-top:.35rem; font-size:.68rem; color:var(--gold); cursor:pointer; text-decoration:underline; }
-
-/* Pros list */
 .pro-list { display:flex; flex-direction:column; gap:.45rem; }
 .pro-row { display:flex; align-items:center; gap:.7rem; padding:.7rem; border-radius:3px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); transition:border-color var(--transition); cursor:pointer; }
 .pro-row:hover { border-color:rgba(200,168,75,.2); }
@@ -455,8 +562,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .toggle.on { background:var(--g4); }
 .toggle-thumb { position:absolute; top:2px; left:2px; width:14px; height:14px; background:white; border-radius:50%; transition:transform var(--transition); box-shadow:0 1px 4px rgba(0,0,0,.3); }
 .toggle.on .toggle-thumb { transform:translateX(16px); }
-
-/* Revenue bars */
 .rev-bars { display:flex; align-items:flex-end; gap:.35rem; height:70px; margin:1rem 0; }
 .rev-bw { flex:1; display:flex; flex-direction:column; align-items:center; gap:.3rem; }
 .rev-b { width:100%; border-radius:2px 2px 0 0; }
@@ -467,9 +572,7 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .rev-leg { display:flex; align-items:center; gap:.3rem; font-size:.65rem; color:rgba(245,240,230,.38); }
 .rev-leg-dot { width:7px; height:7px; border-radius:1px; }
 
-/* ═══════════════════════════════════════
-   ③ DASHBOARD DEL PROFESOR
-═══════════════════════════════════════ */
+/* ═══ PRO DASHBOARD ═══ */
 .pro-agenda-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:.5rem; margin-bottom:1.4rem; }
 .agenda-day { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:4px; overflow:hidden; }
 .agenda-day-head { padding:.5rem; text-align:center; border-bottom:1px solid rgba(255,255,255,.06); }
@@ -485,10 +588,8 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .agenda-slot.as-blocked { background:rgba(15,15,15,.5); border:1px solid rgba(255,255,255,.04); color:rgba(245,240,230,.15); }
 .as-time { font-weight:600; }
 .as-name { margin-top:.1rem; opacity:.7; }
-
-/* Student list */
 .student-list { display:flex; flex-direction:column; gap:.5rem; }
-.student-row { display:flex; align-items:center; gap:.8rem; padding:.8rem; border-radius:4px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); transition:all var(--transition); cursor:pointer; }
+.student-row { display:flex; align-items:center; gap:.8rem; padding:.8rem; border-radius:4px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); transition:all var(--transition); cursor:pointer; flex-wrap:wrap; }
 .student-row:hover { border-color:rgba(200,168,75,.2); background:rgba(255,255,255,.05); }
 .student-av { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#7c5cbf,var(--gold)); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
 .student-name { font-size:.85rem; color:var(--cream); font-weight:500; }
@@ -498,8 +599,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .student-skills { font-size:.65rem; color:rgba(245,240,230,.3); margin-top:.2rem; }
 .validate-btn { background:rgba(200,168,75,.15); border:1px solid rgba(200,168,75,.3); color:var(--gold2); font-size:.68rem; padding:.3rem .65rem; border-radius:2px; cursor:pointer; white-space:nowrap; transition:all var(--transition); }
 .validate-btn:hover { background:var(--gold); color:var(--g1); }
-
-/* Pro earnings */
 .earnings-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-bottom:1.2rem; }
 .earn-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:4px; padding:1rem; }
 .earn-lbl { font-size:.65rem; color:rgba(245,240,230,.3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.4rem; }
@@ -507,10 +606,8 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 .earn-sub { font-size:.68rem; color:rgba(245,240,230,.25); margin-top:.25rem; }
 .earn-card.highlight { border-color:rgba(200,168,75,.3); background:rgba(200,168,75,.07); }
 .earn-card.highlight .earn-val { color:var(--gold); }
-
-/* Next classes */
 .next-class-list { display:flex; flex-direction:column; gap:.5rem; }
-.next-class { display:flex; gap:.8rem; align-items:center; padding:.8rem; border-radius:4px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); }
+.next-class { display:flex; gap:.8rem; align-items:center; padding:.8rem; border-radius:4px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); flex-wrap:wrap; }
 .nc-time { font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; flex-shrink:0; width:55px; text-align:center; }
 .nc-time-sub { font-size:.6rem; color:rgba(245,240,230,.3); }
 .nc-info { flex:1; }
@@ -528,9 +625,137 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 @keyframes floatY { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:.3;} }
 @keyframes glowPurple { 0%,100%{box-shadow:0 0 0 0 rgba(124,92,191,.4);}50%{box-shadow:0 0 10px 3px rgba(124,92,191,.25);} }
+@keyframes shimmer { 0%{background-position:-200% 0;}100%{background-position:200% 0;} }
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width:1024px) {
+  .dash-grid { grid-template-columns:1fr; }
+  .kpi-strip { grid-template-columns:repeat(2,1fr); }
+  .coaches-grid { grid-template-columns:repeat(2,1fr); }
+  .torneos-grid { grid-template-columns:repeat(2,1fr); }
+  .gami-inner { grid-template-columns:1fr; }
+  .gami-left { position:static; }
+  .problem-grid { grid-template-columns:1fr; gap:2.5rem; }
+  .pricing-grid { grid-template-columns:1fr; max-width:400px; margin-left:auto; margin-right:auto; }
+  .testimonials-grid { grid-template-columns:1fr 1fr; }
+  .profile-grid { grid-template-columns:1fr; }
+  .search-bar { grid-template-columns:1fr 1fr; }
+  .search-bar .s-btn { grid-column:1/-1; }
+}
+
+@media (max-width:768px) {
+  :root { --sidebar:0px; }
+  
+  /* NAV mobile */
+  .nav-links { display:none; }
+  .nav-right .nav-demo { display:none; }
+  .hamburger { display:flex; }
+  .nav-public { padding:.8rem 1.2rem; }
+  
+  /* Mobile menu */
+  .mobile-menu { position:fixed; top:0; left:0; right:0; bottom:0; background:var(--g0); z-index:300; display:flex; flex-direction:column; padding:2rem 1.5rem; transform:translateX(-100%); transition:transform .3s ease; }
+  .mobile-menu.open { transform:translateX(0); }
+  .mobile-menu-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:2.5rem; }
+  .mobile-menu-close { background:none; border:none; color:var(--cream); font-size:1.5rem; cursor:pointer; }
+  .mobile-menu nav { display:flex; flex-direction:column; gap:.3rem; margin-bottom:2rem; }
+  .mobile-menu nav a { color:rgba(245,240,230,.6); text-decoration:none; font-size:1.1rem; padding:.8rem 0; border-bottom:1px solid rgba(255,255,255,.06); transition:color .2s; }
+  .mobile-menu nav a:hover { color:var(--cream); }
+  .mobile-menu-btns { display:flex; flex-direction:column; gap:.7rem; }
+  .mobile-menu-btns button { width:100%; padding:.85rem; }
+  
+  /* Hero mobile */
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-left { padding:5rem 1.5rem 2.5rem; }
+  .hero-right { min-height:380px; }
+  .hero-right-content { padding:1.5rem; }
+  .booking-card { width:100%; max-width:340px; }
+  .hero-golf-badge { display:none; }
+  .hero-kpis { gap:1.5rem; }
+  
+  /* Sections mobile */
+  .search-section { padding:2rem 1.5rem; }
+  .search-bar { grid-template-columns:1fr; }
+  .search-bar .s-field { border-right:none; border-bottom:1px solid rgba(26,51,38,.1); }
+  
+  .problem-section, .partner-section, .coaches-section,
+  .torneos-section, .gami-section, .testimonials-section,
+  .pricing-section, .cta-section { padding:4rem 1.5rem; }
+  
+  .flow-steps { grid-template-columns:1fr 1fr; }
+  .flow-step { border-right:none; border-bottom:1px solid rgba(255,255,255,.06); }
+  .flow-step:nth-child(odd) { border-right:1px solid rgba(255,255,255,.06); }
+  .flow-step:nth-last-child(-n+2) { border-bottom:none; }
+  
+  .coaches-grid { grid-template-columns:1fr; }
+  .torneos-grid { grid-template-columns:1fr; }
+  .testimonials-grid { grid-template-columns:1fr; }
+  
+  .qr-strip { flex-direction:column; gap:1rem; text-align:center; }
+  
+  /* Dash mobile */
+  .dash-view { flex-direction:column; }
+  .sidebar { width:100%; height:auto; position:static; flex-direction:row; overflow-x:auto; }
+  .sb-logo, .sb-entity { display:none; }
+  .sb-nav { display:flex; flex-direction:row; padding:.5rem; overflow-x:auto; flex:none; }
+  .sb-section { display:none; }
+  .sb-item { flex-direction:column; gap:.2rem; min-width:60px; padding:.5rem; font-size:.6rem; white-space:nowrap; border-left:none; border-bottom:2px solid transparent; }
+  .sb-item.active { border-bottom-color:var(--gold); border-left-color:transparent; }
+  .sb-footer { display:none; }
+  .dash-content { padding:1rem; }
+  .kpi-strip { grid-template-columns:repeat(2,1fr); gap:.6rem; }
+  .kpi-card .kpi-val { font-size:1.5rem; }
+  
+  /* Profile mobile */
+  .profile-hero { padding:3rem 1.5rem 2rem; }
+  .profile-tabs { padding:0 1.5rem; overflow-x:auto; }
+  .profile-content { padding:2rem 1.5rem; }
+  
+  footer { padding:2rem 1.5rem; flex-direction:column; text-align:center; }
+  .footer-links { justify-content:center; gap:1rem; }
+  
+  .reg-modal { width:100%; }
+  .reg-type-grid { grid-template-columns:1fr; }
+  .reg-form-row { grid-template-columns:1fr; }
+
+  .profile-stats-row { gap:1rem; }
+  .pro-agenda-grid { grid-template-columns:repeat(3,1fr); }
+}
+
+@media (max-width:480px) {
+  .hero h1 { font-size:2.4rem; }
+  .kpi-strip { grid-template-columns:1fr 1fr; }
+  .section-h { font-size:1.7rem; }
+  .pro-agenda-grid { grid-template-columns:repeat(2,1fr); }
+  .earnings-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><div class="toast-msg" id="toast-msg"></div></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-top">
+    <div class="logo">Fairway<em>Pro</em></div>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">✕</button>
+  </div>
+  <nav>
+    <a href="#acceso" onclick="closeMobileMenu()">Sin ser socio</a>
+    <a href="#profesores" onclick="closeMobileMenu()">Profesores</a>
+    <a href="#torneos" onclick="closeMobileMenu()">Torneos</a>
+    <a href="#progreso" onclick="closeMobileMenu()">Tu progreso</a>
+    <a href="#pricing" onclick="closeMobileMenu()">Tarifas</a>
+  </nav>
+  <div class="mobile-menu-btns">
+    <button class="btn-secondary" onclick="closeMobileMenu();openModal('modal-reg')">Registrarse</button>
+    <button class="btn-primary" onclick="closeMobileMenu();showView('view-club')">Demo Club →</button>
+    <button class="btn-primary" style="background:var(--g3);" onclick="closeMobileMenu();showView('view-pro')">Demo Profesor →</button>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════
   ① LANDING PAGE
@@ -543,17 +768,21 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
     <ul class="nav-links">
       <li><a href="#acceso">Sin ser socio</a></li>
       <li><a href="#profesores">Profesores</a></li>
+      <li><a href="#torneos">Torneos</a></li>
       <li><a href="#progreso">Tu progreso</a></li>
       <li><a href="#pricing">Tarifas</a></li>
     </ul>
     <div class="nav-right">
       <button class="nav-demo" onclick="showView('view-club')">Demo Club →</button>
       <button class="nav-demo" onclick="showView('view-pro')">Demo Profesor →</button>
-      <button class="btn-primary" style="padding:.5rem 1.2rem;font-size:.78rem;" onclick="showToast('🚀 Próximamente — Registro abierto en Q2 2025')">Registrarse</button>
+      <button class="btn-primary" style="padding:.5rem 1.2rem;font-size:.78rem;" onclick="openModal('modal-reg')">Registrarse</button>
+      <button class="hamburger" onclick="openMobileMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO con vídeo/imagen de golf -->
   <section class="hero">
     <div class="hero-left">
       <span class="eyebrow" style="animation:rise .6s ease both;">🏌️ El marketplace de golf en España</span>
@@ -561,7 +790,7 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
       <p class="hero-desc">Conectamos jugadores con los mejores profesores de toda España — seas socio o no. Reserva una clase, accede al campo con un QR y acumula hitos validados por tu propio pro.</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="document.getElementById('profesores').scrollIntoView({behavior:'smooth'})">Buscar mi profesor</button>
-        <button class="btn-secondary" onclick="showView('view-pro')">Soy profesor →</button>
+        <button class="btn-secondary" onclick="openModal('modal-reg')">Únete gratis →</button>
       </div>
       <div class="hero-kpis">
         <div><div class="kpi-val">340+</div><div class="kpi-label">Profesores activos</div></div>
@@ -569,38 +798,111 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
         <div><div class="kpi-val">4.9★</div><div class="kpi-label">Valoración media</div></div>
       </div>
     </div>
+
     <div class="hero-right">
-      <div class="booking-card">
-        <div class="split-badge">✓ Pago dividido automático</div>
-        <div class="bc-head">
-          <div class="bc-title">Confirmar reserva</div>
-          <div class="bc-step">Paso 3 / 3</div>
-        </div>
-        <div class="bc-pro">
-          <div class="bc-avatar">⛳</div>
-          <div>
-            <div class="bc-name">Carlos Medina · PGA</div>
-            <div class="bc-role">Mar 14:00 · Campo Norte · Puesto 12</div>
-            <div class="bc-open"><div class="bc-open-dot"></div>Acepta jugadores externos</div>
+      <!-- Fondo visual del hero -->
+      <!-- SVG Golf Scene - autocontenido, sin dependencias externas -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky gradient -->
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#040d08"/>
+            <stop offset="40%" stop-color="#071510"/>
+            <stop offset="70%" stop-color="#0a2015"/>
+            <stop offset="100%" stop-color="#0d2a1a"/>
+          </linearGradient>
+          <radialGradient id="moon" cx="75%" cy="18%" r="12%">
+            <stop offset="0%" stop-color="rgba(200,168,75,0.25)"/>
+            <stop offset="60%" stop-color="rgba(200,168,75,0.06)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <radialGradient id="fairwayGlow" cx="50%" cy="100%" r="55%">
+            <stop offset="0%" stop-color="rgba(37,77,56,0.9)"/>
+            <stop offset="50%" stop-color="rgba(15,31,22,0.6)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="url(#sky)"/>
+        <!-- Moon glow -->
+        <ellipse cx="75%" cy="18%" rx="120" ry="120" fill="url(#moon)"/>
+        <!-- Moon -->
+        <circle cx="75%" cy="18%" r="22" fill="#f5e4a8" opacity="0.85"/>
+        <circle cx="77%" cy="16%" r="18" fill="#0a1a10" opacity="0.85"/>
+        <!-- Stars -->
+        <circle cx="10%" cy="8%" r="1.2" fill="white" opacity="0.8"/>
+        <circle cx="22%" cy="5%" r="0.8" fill="white" opacity="0.6"/>
+        <circle cx="38%" cy="10%" r="1" fill="white" opacity="0.7"/>
+        <circle cx="52%" cy="4%" r="1.5" fill="white" opacity="0.9"/>
+        <circle cx="65%" cy="7%" r="0.8" fill="white" opacity="0.5"/>
+        <circle cx="88%" cy="6%" r="1" fill="white" opacity="0.7"/>
+        <circle cx="95%" cy="15%" r="0.6" fill="white" opacity="0.4"/>
+        <circle cx="18%" cy="22%" r="0.7" fill="white" opacity="0.5"/>
+        <circle cx="30%" cy="18%" r="1" fill="white" opacity="0.6"/>
+        <circle cx="45%" cy="25%" r="0.8" fill="white" opacity="0.4"/>
+        <!-- Tree silhouettes left -->
+        <ellipse cx="8%" cy="55%" rx="28" ry="70" fill="#060f08" opacity="0.95"/>
+        <ellipse cx="5%" cy="60%" rx="20" ry="55" fill="#060f08" opacity="0.95"/>
+        <ellipse cx="14%" cy="58%" rx="22" ry="60" fill="#060f08" opacity="0.9"/>
+        <!-- Tree silhouettes right -->
+        <ellipse cx="90%" cy="52%" rx="30" ry="75" fill="#060f08" opacity="0.95"/>
+        <ellipse cx="95%" cy="56%" rx="22" ry="60" fill="#060f08" opacity="0.9"/>
+        <ellipse cx="82%" cy="55%" rx="25" ry="65" fill="#060f08" opacity="0.9"/>
+        <!-- Distant tree line middle -->
+        <path d="M0,62% Q25%,55% 50%,60% Q75%,55% 100%,62% L100%,100% L0,100% Z" fill="#060f08" opacity="0.8"/>
+        <!-- Fairway glow ground -->
+        <rect x="0" y="60%" width="100%" height="40%" fill="url(#fairwayGlow)"/>
+        <!-- Fairway stripes -->
+        <rect x="0" y="68%" width="100%" height="3%" fill="#0d2a18" opacity="0.4"/>
+        <rect x="0" y="74%" width="100%" height="3%" fill="#0d2a18" opacity="0.4"/>
+        <rect x="0" y="80%" width="100%" height="3%" fill="#0d2a18" opacity="0.4"/>
+        <!-- Flag/hole silhouette -->
+        <rect x="49.5%" y="55%" width="1" height="55" fill="#c8a84b" opacity="0.8"/>
+        <polygon points="0,0 20,-10 0,-20" transform="translate(49.5%,55%) translate(1,0)" fill="#c8a84b" opacity="0.9"/>
+        <!-- Hole cup -->
+        <ellipse cx="50%" cy="87%" rx="12" ry="4" fill="#0a1a10" opacity="0.7"/>
+      </svg>
+      <div class="hero-right-overlay"></div>
+      <div class="hero-right-content">
+        <div class="hero-golf-badge">
+          <div class="hgb-icon">🏆</div>
+          <div class="hgb-text">
+            <strong>Próximo torneo</strong>
+            Copa Primavera 2025 · Madrid · 15 Mar
           </div>
         </div>
-        <div class="bc-meetup">
-          <div class="bc-meetup-lbl">📍 Punto de encuentro</div>
-          <div class="bc-meetup-val">Entrada campo de prácticas Norte</div>
-          <div class="bc-meetup-sub">Carlos te espera allí · QR de acceso 30 min antes</div>
-        </div>
-        <div class="bc-rows">
-          <div class="bc-row"><div class="bc-row-l">Clase 1h · Carlos Medina</div><div class="bc-row-v">65,00 €</div></div>
-          <div class="bc-row"><div class="bc-row-l">Bola + puesto (Club)</div><div class="bc-row-v">10,00 €</div></div>
-          <div class="bc-divider"></div>
-          <div class="bc-row"><div class="bc-row-l">Fee plataforma (12%)</div><div class="bc-row-v gold">9,00 €</div></div>
-          <div class="bc-divider"></div>
-          <div class="bc-total"><div class="bc-total-l">Total</div><div class="bc-total-v">84 €</div></div>
-        </div>
-        <button class="bc-btn" onclick="showToast('✅ Reserva confirmada · Recibirás el QR 30 min antes')">Pagar con Bizum / Tarjeta</button>
-        <div class="bc-methods">
-          <span class="bc-method">Visa</span><span class="bc-method">Mastercard</span>
-          <span class="bc-method">Bizum</span><span class="bc-method">Apple Pay</span>
+        <div class="booking-card" style="position:relative;">
+          <div class="split-badge">✓ Pago dividido automático</div>
+          <div class="bc-head">
+            <div class="bc-title">Confirmar reserva</div>
+            <div class="bc-step">Paso 3 / 3</div>
+          </div>
+          <div class="bc-pro">
+            <div class="bc-avatar">⛳</div>
+            <div>
+              <div class="bc-name">Carlos Medina · PGA</div>
+              <div class="bc-role">Mar 14:00 · Campo Norte · Puesto 12</div>
+              <div class="bc-open"><div class="bc-open-dot"></div>Acepta jugadores externos</div>
+            </div>
+          </div>
+          <div class="bc-meetup">
+            <div class="bc-meetup-lbl">📍 Punto de encuentro</div>
+            <div class="bc-meetup-val">Entrada campo de prácticas Norte</div>
+            <div class="bc-meetup-sub">Carlos te espera allí · QR de acceso 30 min antes</div>
+          </div>
+          <div class="bc-rows">
+            <div class="bc-row"><div class="bc-row-l">Clase 1h · Carlos Medina</div><div class="bc-row-v">65,00 €</div></div>
+            <div class="bc-row"><div class="bc-row-l">Bola + puesto (Club)</div><div class="bc-row-v">10,00 €</div></div>
+            <div class="bc-divider"></div>
+            <div class="bc-row"><div class="bc-row-l">Fee plataforma (12%)</div><div class="bc-row-v gold">9,00 €</div></div>
+            <div class="bc-divider"></div>
+            <div class="bc-total"><div class="bc-total-l">Total</div><div class="bc-total-v">84 €</div></div>
+          </div>
+          <button class="bc-btn" onclick="showToast('✅ Reserva confirmada · Recibirás el QR 30 min antes')">Pagar con Bizum / Tarjeta</button>
+          <div class="bc-methods">
+            <span class="bc-method">Visa</span><span class="bc-method">Mastercard</span>
+            <span class="bc-method">Bizum</span><span class="bc-method">Apple Pay</span>
+          </div>
         </div>
       </div>
     </div>
@@ -702,17 +1004,17 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
         <span class="eyebrow">Profesores destacados</span>
         <h2 class="section-h">Encuentra tu <em>profesor ideal</em></h2>
       </div>
-      <a href="#" class="see-all" onclick="showToast('🔍 Cargando todos los profesores...')">Ver todos →</a>
+      <a href="#" class="see-all" onclick="showToast('🔍 Cargando todos los profesores...');return false;">Ver todos →</a>
     </div>
     <div class="coaches-grid">
       <!-- Coach 1 -->
-      <div class="coach-card" onclick="showToast('📋 Perfil de Carlos Medina — próximamente')">
-        <div class="coach-img" style="background:linear-gradient(135deg,#2d5a3d,#1a3a2a)">
+      <div class="coach-card" onclick="showView('view-profile-pro')">
+        <div class="coach-img" style="background:linear-gradient(160deg,#07200f 0%,#1a3a2a 40%,#3a7a52 100%);">
           <div class="coach-emoji">⛳</div>
           <div class="coach-img-overlay"></div>
           <div class="coach-badge">TOP VALORADO</div>
           <div class="coach-avail"><div class="avail-dot"></div>Acepta externos</div>
-          <div class="coach-rating">⭐ 4.98 · 143 clases</div>
+          <div class="coach-rating" style="position:absolute;bottom:1rem;left:1rem;">⭐ 4.98 · 143 clases</div>
         </div>
         <div class="coach-body">
           <div class="coach-name">Carlos Medina</div>
@@ -721,18 +1023,18 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
           <div class="coach-tags"><span class="coach-tag">Drive</span><span class="coach-tag">Swing</span><span class="coach-tag">Principiantes</span></div>
           <div class="coach-foot">
             <div class="coach-price">55€ <span>/ hora socio · 65€ externo</span></div>
-            <button class="btn-ver">Ver perfil</button>
+            <button class="btn-ver" onclick="event.stopPropagation();showView('view-profile-pro')">Ver perfil</button>
           </div>
         </div>
       </div>
       <!-- Coach 2 -->
-      <div class="coach-card" onclick="showToast('📋 Perfil de Laura Sánchez — próximamente')">
-        <div class="coach-img" style="background:linear-gradient(135deg,#4a6741,#2d5a3d)">
+      <div class="coach-card" onclick="showToast('📋 Perfil de Laura Sánchez')">
+        <div class="coach-img" style="background:linear-gradient(160deg,#0d2a18 0%,#2d5a3d 50%,#4a7a5a 100%);">
           <div class="coach-emoji">🏌️‍♀️</div>
           <div class="coach-img-overlay"></div>
           <div class="coach-badge">PGA CERTIFICADA</div>
           <div class="coach-avail"><div class="avail-dot"></div>Acepta externos</div>
-          <div class="coach-rating">⭐ 4.96 · 89 clases</div>
+          <div class="coach-rating" style="position:absolute;bottom:1rem;left:1rem;">⭐ 4.96 · 89 clases</div>
         </div>
         <div class="coach-body">
           <div class="coach-name">Laura Sánchez</div>
@@ -746,20 +1048,21 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
         </div>
       </div>
       <!-- Coach 3 -->
-      <div class="coach-card" onclick="showToast('📋 Perfil de Álvaro Ruiz — próximamente')">
-        <div class="coach-img" style="background:linear-gradient(135deg,#3d5e2d,#1a3a2a)">
+      <div class="coach-card" onclick="showToast('📋 Perfil de Álvaro Ruiz')">
+        <div class="coach-img" style="background:linear-gradient(160deg,#0f2a1a 0%,#3d5e2d 50%,#5a7a3a 100%);">
           <div class="coach-emoji">🏆</div>
           <div class="coach-img-overlay"></div>
-          <div class="coach-badge">EX PRO TOUR</div>
-          <div class="coach-rating">⭐ 5.0 · 61 clases</div>
+          <div class="coach-badge">COMPETICIÓN</div>
+          <div class="coach-avail"><div class="avail-dot"></div>Acepta externos</div>
+          <div class="coach-rating" style="position:absolute;bottom:1rem;left:1rem;">⭐ 4.93 · 211 clases</div>
         </div>
         <div class="coach-body">
           <div class="coach-name">Álvaro Ruiz</div>
-          <div class="coach-loc">📍 Marbella · Valderrama</div>
-          <div class="coach-visitor" style="background:#fff7ed;border-color:#fed7aa;color:#c2410c">🔒 Solo socios del club</div>
-          <div class="coach-tags"><span class="coach-tag">Alta competición</span><span class="coach-tag">Biomecánica</span></div>
+          <div class="coach-loc">📍 Sevilla · Club de Golf El Rompido</div>
+          <div class="coach-visitor">🟢 No socio bienvenido · 75€/h</div>
+          <div class="coach-tags"><span class="coach-tag">Competición</span><span class="coach-tag">Hándicap</span><span class="coach-tag">Avanzado</span></div>
           <div class="coach-foot">
-            <div class="coach-price">120€ <span>/ hora</span></div>
+            <div class="coach-price">65€ <span>/ hora socio · 75€ externo</span></div>
             <button class="btn-ver">Ver perfil</button>
           </div>
         </div>
@@ -767,67 +1070,165 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
     </div>
   </section>
 
+  <!-- TORNEOS (NEW) -->
+  <section class="torneos-section" id="torneos">
+    <div style="position:relative;">
+      <span class="eyebrow">Competición abierta</span>
+      <h2 class="section-h">Torneos para <em>todos los niveles</em></h2>
+      <p class="section-sub">Participa en torneos organizados por clubs partner. Sin ser socio. Sin complicaciones. Solo golf.</p>
+    </div>
+    <div class="torneos-grid">
+      <!-- Torneo 1 -->
+      <div class="torneo-card featured" onclick="openModal('modal-torneo')">
+        <div class="torneo-banner" style="background:linear-gradient(135deg,#1a3a2a,#3a7a52);">
+          🏆
+          <div class="torneo-status t-status-open">Inscripción abierta</div>
+        </div>
+        <div class="torneo-body">
+          <div class="torneo-name">Copa Primavera FairwayPro 2025</div>
+          <div class="torneo-meta">
+            <div class="torneo-meta-row"><span>📅</span>15 Marzo 2025 · Sábado</div>
+            <div class="torneo-meta-row"><span>📍</span>Real Club de Golf de Madrid</div>
+            <div class="torneo-meta-row"><span>🏌️</span>Modalidad: Stableford · 18 hoyos</div>
+            <div class="torneo-meta-row"><span>🎯</span>HCP: 0 – 36 · Socios y externos</div>
+          </div>
+          <div class="torneo-prizes">
+            <div class="prize-chip">🥇 500€</div>
+            <div class="prize-chip">🥈 250€</div>
+            <div class="prize-chip">🎁 Premio especial</div>
+          </div>
+          <div class="torneo-footer">
+            <div class="torneo-players">Inscritos: <strong>34/80</strong></div>
+            <button class="torneo-btn" onclick="event.stopPropagation();openModal('modal-torneo')">Inscribirse · 25€</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Torneo 2 -->
+      <div class="torneo-card" onclick="showToast('🏌️ Torneo cargando...')">
+        <div class="torneo-banner" style="background:linear-gradient(135deg,#2d5a3d,#4a7a60);">
+          ⛳
+          <div class="torneo-status t-status-soon">Próximamente</div>
+        </div>
+        <div class="torneo-body">
+          <div class="torneo-name">Open Amateur Andalucía</div>
+          <div class="torneo-meta">
+            <div class="torneo-meta-row"><span>📅</span>22–23 Marzo 2025 · Fin de semana</div>
+            <div class="torneo-meta-row"><span>📍</span>Club El Rompido · Huelva</div>
+            <div class="torneo-meta-row"><span>🏌️</span>Modalidad: Stroke play · 36 hoyos</div>
+            <div class="torneo-meta-row"><span>🎯</span>HCP: 0 – 28 · Externos bienvenidos</div>
+          </div>
+          <div class="torneo-prizes">
+            <div class="prize-chip">🥇 800€</div>
+            <div class="prize-chip">🥈 400€</div>
+            <div class="prize-chip">🥉 200€</div>
+          </div>
+          <div class="torneo-footer">
+            <div class="torneo-players">Inscripción abre: <strong>28 Feb</strong></div>
+            <button class="torneo-btn outline">Recordarme</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Torneo 3 -->
+      <div class="torneo-card" onclick="showToast('🏌️ Torneo cargando...')">
+        <div class="torneo-banner" style="background:linear-gradient(135deg,#3a5a3a,#5a8a60);">
+          🌿
+          <div class="torneo-status t-status-open">Inscripción abierta</div>
+        </div>
+        <div class="torneo-body">
+          <div class="torneo-name">Liga Principiantes · Madrid</div>
+          <div class="torneo-meta">
+            <div class="torneo-meta-row"><span>📅</span>Cada primer domingo del mes</div>
+            <div class="torneo-meta-row"><span>📍</span>Campo de prácticas La Moraleja</div>
+            <div class="torneo-meta-row"><span>🏌️</span>Modalidad: 9 hoyos · Formato amistoso</div>
+            <div class="torneo-meta-row"><span>🎯</span>HCP: 26 – 54 · Ideal para novatos</div>
+          </div>
+          <div class="torneo-prizes">
+            <div class="prize-chip">🎁 Material golf</div>
+            <div class="prize-chip">🏅 Trofeos</div>
+            <div class="prize-chip">🍻 After-golf</div>
+          </div>
+          <div class="torneo-footer">
+            <div class="torneo-players">Inscritos: <strong>12/24</strong></div>
+            <button class="torneo-btn" onclick="event.stopPropagation();showToast('✅ Inscripción realizada · 15€')">Inscribirse · 15€</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="torneos-cta">
+      <p style="color:rgba(245,240,230,.3);font-size:.85rem;margin-bottom:1rem;">¿Tu club quiere organizar un torneo?</p>
+      <button class="btn-gold" onclick="openModal('modal-reg')">Registra tu club y crea torneos gratis</button>
+    </div>
+  </section>
+
   <!-- GAMIFICATION -->
   <section class="gami-section" id="progreso">
     <div class="gami-inner">
       <div class="gami-left">
-        <span class="eyebrow">Sistema de progresión</span>
-        <h2 class="section-h">Tu camino de<br><em>jugador validado</em></h2>
-        <p class="section-sub">Cada clase suma experiencia. Cada habilidad puede ser validada por tu profesor. Construye tu perfil de skills y desbloquea nuevos niveles.</p>
+        <span class="eyebrow">Tu progreso, validado</span>
+        <h2 class="section-h">Sube de nivel<br>con cada <em>clase</em></h2>
+        <p class="section-sub">Tu profesor valida cada skill que dominas. Colecciona hitos, sube de nivel y muestra tu progreso real — no solo tu hándicap.</p>
         <div class="player-card">
           <div class="pc-head">
             <div class="pc-avatar">🏌️</div>
             <div>
               <div class="pc-name">Javier Morales</div>
-              <div class="pc-hcp">HCP oficial: 18.4</div>
-              <div class="level-badge">NIVEL 6 · Fairway Hunter</div>
+              <div class="pc-hcp">HCP 18.4 · Madrid</div>
+              <div class="level-badge">⚡ NIVEL 6 · Fairway Ace</div>
             </div>
           </div>
           <div class="xp-bar-wrap">
-            <div class="xp-label"><span>1.240 XP</span><span>+260 para nivel 7</span></div>
+            <div class="xp-label"><span>1.240 XP</span><span>Siguiente nivel: 1.500 XP</span></div>
             <div class="xp-bar"><div class="xp-fill"></div></div>
           </div>
           <div class="pc-stats">
             <div class="pc-stat"><div class="pc-stat-val">14</div><div class="pc-stat-lbl">Clases</div></div>
-            <div class="pc-stat"><div class="pc-stat-val">3</div><div class="pc-stat-lbl">Profesores</div></div>
-            <div class="pc-stat"><div class="pc-stat-val">9</div><div class="pc-stat-lbl">Skills ✅</div></div>
+            <div class="pc-stat"><div class="pc-stat-val">9</div><div class="pc-stat-lbl">Skills</div></div>
+            <div class="pc-stat"><div class="pc-stat-val">3</div><div class="pc-stat-lbl">Torneos</div></div>
           </div>
-          <div class="badges-lbl">LOGROS DESBLOQUEADOS</div>
+          <div class="badges-lbl">Hitos conseguidos</div>
           <div class="badges-row">
-            <div class="badge-chip earned" title="Primera clase">🎯</div>
-            <div class="badge-chip earned" title="5 clases">🔥</div>
-            <div class="badge-chip earned" title="Swing validado">⛳</div>
-            <div class="badge-chip earned" title="Externo">🚀</div>
-            <div class="badge-chip new" title="Nuevo: 3 profes">🌟</div>
-            <div class="badge-chip locked" title="20 clases">🏆</div>
-            <div class="badge-chip locked" title="HCP bajo 10">🎖️</div>
+            <div class="badge-chip earned" title="Primer drive">🏌️</div>
+            <div class="badge-chip earned" title="Putting master">⛳</div>
+            <div class="badge-chip earned" title="Constante">🔥</div>
+            <div class="badge-chip new" title="¡Nuevo!">🏆</div>
+            <div class="badge-chip locked">🎯</div>
+            <div class="badge-chip locked">⭐</div>
           </div>
         </div>
       </div>
       <div>
-        <!-- Swing -->
         <div class="skills-panel">
           <div class="skill-cat-head">
-            <div class="skill-cat-info"><span style="font-size:1.2rem;">🏌️</span><div><div class="skill-cat-name">Swing & Drive</div><div class="skill-cat-sub">Validado por Carlos Medina</div></div></div>
-            <div class="skill-cat-pct">75%</div>
+            <div class="skill-cat-info">
+              <div>
+                <div class="skill-cat-name">Juego largo</div>
+                <div class="skill-cat-sub">Drive · Madera · Hierros</div>
+              </div>
+            </div>
+            <div class="skill-cat-pct">67%</div>
           </div>
           <div class="skill-items">
-            <div class="skill-item"><span class="skill-ico">✅</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Grip y postura</span><span class="pill-validated">✓ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div></div></div>
-            <div class="skill-item"><span class="skill-ico">✅</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Backswing consistente</span><span class="pill-validated">✓ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div></div></div>
-            <div class="skill-item"><span class="skill-ico">⏳</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Transferencia de peso</span><span class="pill-pending">⏳ Pendiente</span></div><div class="skill-bar"><div class="skill-fill" style="width:70%;background:linear-gradient(90deg,var(--g4),var(--g5))"></div></div></div></div>
-            <div class="skill-item"><span class="skill-ico">🔒</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Drive > 200m</span><span class="pill-locked">🔒 Bloqueado</span></div><div class="skill-bar"><div class="skill-fill" style="width:25%;background:rgba(255,255,255,.1)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">🏌️</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Postura y agarre</span><span class="pill-validated">✅ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%;background:var(--g5)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">💨</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Drive consistente</span><span class="pill-validated">✅ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%;background:var(--g4)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">🎯</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Hierros 6–9</span><span class="pill-pending">⏳ Pendiente</span></div><div class="skill-bar"><div class="skill-fill" style="width:45%;background:var(--gold)"></div></div></div></div>
           </div>
         </div>
-        <!-- Juego corto -->
-        <div class="skills-panel" style="margin-top:1rem;">
+        <div class="skills-panel">
           <div class="skill-cat-head">
-            <div class="skill-cat-info"><span style="font-size:1.2rem;">🎯</span><div><div class="skill-cat-name">Juego corto</div><div class="skill-cat-sub">Validado por Laura Sánchez</div></div></div>
-            <div class="skill-cat-pct">50%</div>
+            <div class="skill-cat-info">
+              <div>
+                <div class="skill-cat-name">Juego corto</div>
+                <div class="skill-cat-sub">Approach · Chip · Bunker</div>
+              </div>
+            </div>
+            <div class="skill-cat-pct">33%</div>
           </div>
           <div class="skill-items">
-            <div class="skill-item"><span class="skill-ico">✅</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Chip básico</span><span class="pill-validated">✓ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div></div></div>
-            <div class="skill-item"><span class="skill-ico">⏳</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Pitch de 50 metros</span><span class="pill-pending">⏳ En progreso</span></div><div class="skill-bar"><div class="skill-fill" style="width:55%;background:linear-gradient(90deg,#7c5cbf,#a78bfa)"></div></div></div></div>
-            <div class="skill-item"><span class="skill-ico">🔒</span><div class="skill-body"><div class="skill-top"><span class="skill-name">Bunker de greenside</span><span class="pill-locked">🔒 Bloqueado</span></div><div class="skill-bar"><div class="skill-fill" style="width:10%;background:rgba(255,255,255,.1)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">🏴</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Chip básico</span><span class="pill-validated">✅ Validado</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%;background:var(--g5)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">🏖️</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Salida de bunker</span><span class="pill-pending">⏳ Pendiente</span></div><div class="skill-bar"><div class="skill-fill" style="width:30%;background:var(--gold)"></div></div></div></div>
+            <div class="skill-item"><div class="skill-ico">🎯</div><div class="skill-body"><div class="skill-top"><span class="skill-name">Lob shot</span><span class="pill-locked">🔒 Bloqueado</span></div><div class="skill-bar"><div class="skill-fill" style="width:0%;background:var(--g3)"></div></div></div></div>
           </div>
         </div>
       </div>
@@ -836,16 +1237,14 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 
   <!-- TESTIMONIALS -->
   <section class="testimonials-section">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Lo que dicen nuestros usuarios</span>
-        <h2 class="section-h">Historias <em>reales</em></h2>
-      </div>
+    <div style="text-align:center;">
+      <span class="eyebrow">Lo que dicen</span>
+      <h2 class="section-h" style="margin:0 auto;">Historias <em>reales</em></h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card">
-        <div class="testimonial-text">"Llevaba años queriendo entrenar con un buen pro pero no era socio. FairwayPro me lo puso en 3 clics."</div>
-        <div class="t-author"><div class="t-avatar">👨</div><div><div class="t-name">Javier Morales</div><div class="t-role">HCP 18→12 · Madrid · No socio</div></div></div>
+        <div class="testimonial-text">"Nunca había podido entrenar con un profesor porque el único cerca era del club. Con FairwayPro, en 5 minutos tenía clase reservada y acceso con QR."</div>
+        <div class="t-author"><div class="t-avatar">🏌️</div><div><div class="t-name">Javier Morales</div><div class="t-role">Jugador externo · Madrid</div></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-text">"Ver mis skills validados por mi profesora me da un subidón. Es como un videojuego pero con el golf de verdad."</div>
@@ -872,12 +1271,11 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
           <li>✓ Perfil público en la plataforma</li>
           <li>✓ Hasta 8 reservas/mes</li>
           <li>✓ Acepta jugadores externos</li>
-          <li>✓ Punto de encuentro en el mapa</li>
           <li>✓ QR de acceso para alumnos</li>
           <li style="opacity:.4;">✗ Analytics de rendimiento</li>
-          <li style="opacity:.4;">✗ Posición destacada en búsquedas</li>
+          <li style="opacity:.4;">✗ Torneos propios</li>
         </ul>
-        <button class="price-cta" onclick="showToast('📧 Registro abierto próximamente')">Empezar gratis</button>
+        <button class="price-cta" onclick="openModal('modal-reg')">Empezar gratis</button>
       </div>
       <div class="price-card pro">
         <div class="popular-badge">★ Más popular</div>
@@ -892,9 +1290,9 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
           <li>✓ Analytics: reservas e ingresos</li>
           <li>✓ Gestión de bonos y packs</li>
           <li>✓ Recordatorios automáticos</li>
-          <li>✓ Hasta 2 clubs vinculados</li>
+          <li>✓ Acceso a torneos FairwayPro</li>
         </ul>
-        <button class="price-cta" onclick="showToast('📧 Registro abierto próximamente')">Activar Plan Pro</button>
+        <button class="price-cta" onclick="openModal('modal-reg')">Activar Plan Pro</button>
       </div>
       <div class="price-card elite">
         <div class="price-plan">Elite</div>
@@ -905,12 +1303,12 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
           <li>✓ Todo lo de Pro</li>
           <li>✓ Posicionamiento #1 en búsquedas</li>
           <li>✓ Clubs ilimitados vinculados</li>
-          <li>✓ Perfil premium personalizado</li>
+          <li>✓ Crear torneos propios</li>
           <li>✓ Integración RFEGOLF (hándicap)</li>
           <li>✓ Stats de skills de tus alumnos</li>
           <li>✓ Soporte prioritario 7 días</li>
         </ul>
-        <button class="price-cta" onclick="showToast('📧 Registro abierto próximamente')">Activar Plan Elite</button>
+        <button class="price-cta" onclick="openModal('modal-reg')">Activar Plan Elite</button>
       </div>
     </div>
   </section>
@@ -920,7 +1318,7 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
     <h2>¿Listo para tu<br>primer <em>hito</em>?</h2>
     <p>Únete a miles de jugadores en España que ya entrenan, progresan y suben de nivel — sin importar si son socios o no.</p>
     <div class="cta-btns">
-      <button class="btn-primary" onclick="document.getElementById('profesores').scrollIntoView({behavior:'smooth'})">Buscar mi profesor</button>
+      <button class="btn-primary" onclick="openModal('modal-reg')">Crear mi cuenta gratis</button>
       <button class="btn-secondary" onclick="showView('view-club')">Soy un club →</button>
     </div>
   </section>
@@ -932,8 +1330,9 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
       <a href="#">Términos</a>
       <a href="#">Privacidad</a>
       <a href="#">Contacto</a>
-      <a href="#" onclick="showView('view-club')">Panel Club</a>
-      <a href="#" onclick="showView('view-pro')">Panel Profesor</a>
+      <a href="#" onclick="showView('view-club');return false;">Panel Club</a>
+      <a href="#" onclick="showView('view-pro');return false;">Panel Profesor</a>
+      <a href="#torneos">Torneos</a>
     </div>
     <p>© 2025 FairwayPro · Golf sin barreras</p>
   </footer>
@@ -944,7 +1343,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
   ② DASHBOARD DEL CLUB
 ════════════════════════════════ -->
 <div class="dash-view" id="view-club">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sb-logo"><div class="logo" style="font-size:1.25rem;">Fairway<em>Pro</em></div></div>
     <div class="sb-entity">
@@ -956,7 +1354,9 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
       <div class="sb-item active"><span class="sb-icon">📊</span>Panel general</div>
       <div class="sb-item" onclick="showToast('📅 Módulo de slots — próximamente')"><span class="sb-icon">📅</span>Slots y horarios</div>
       <div class="sb-item" onclick="showToast('⛳ Módulo de puestos — próximamente')"><span class="sb-icon">⛳</span>Puestos de práctica</div>
+      <div class="sb-item" onclick="showToast('🏆 Torneos — próximamente')"><span class="sb-icon">🏆</span>Mis torneos</div>
       <div class="sb-section">Gestión</div>
+      <div class="sb-item" onclick="showView('view-profile-club')"><span class="sb-icon">🏛️</span>Mi perfil de club</div>
       <div class="sb-item" onclick="showToast('🏌️ Módulo de profesores — próximamente')"><span class="sb-icon">🏌️</span>Profesores</div>
       <div class="sb-item" onclick="showToast('👥 Módulo de jugadores — próximamente')"><span class="sb-icon">👥</span>Jugadores externos</div>
       <div class="sb-item" onclick="showToast('📋 Módulo de reservas — próximamente')"><span class="sb-icon">📋</span>Reservas</div>
@@ -972,7 +1372,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
     </div>
   </aside>
 
-  <!-- Main -->
   <div class="dash-main">
     <header class="topbar">
       <div class="topbar-title">Panel del <em>Club</em></div>
@@ -984,17 +1383,15 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
     </header>
 
     <div class="dash-content">
-      <!-- KPIs -->
       <div class="kpi-strip">
         <div class="kpi-card k1"><div class="kpi-lbl">Ingresos este mes</div><div class="kpi-val">1.840€</div><div class="kpi-sub">Fee de instalaciones externas</div><div class="kpi-trend trend-up">+23% ↑</div></div>
         <div class="kpi-card k2"><div class="kpi-lbl">Slots ocupados hoy</div><div class="kpi-val">8/15</div><div class="kpi-sub">53% ocupación · 4 externos</div><div class="kpi-trend trend-up">+2 ↑</div></div>
         <div class="kpi-card k3"><div class="kpi-lbl">Conflictos activos</div><div class="kpi-val">2</div><div class="kpi-sub">Requieren acción del club</div><div class="kpi-trend trend-warn">!</div></div>
-        <div class="kpi-card k4"><div class="kpi-lbl">Profesores activos</div><div class="kpi-val">4</div><div class="kpi-sub">2 con alumnos externos hoy</div><div class="kpi-trend trend-up">+1 ↑</div></div>
+        <div class="kpi-card k4"><div class="kpi-lbl">Próximo torneo</div><div class="kpi-val">15 Mar</div><div class="kpi-sub">Copa Primavera · 34 inscritos</div><div class="kpi-trend trend-up">🏆</div></div>
       </div>
 
       <div class="dash-grid">
         <div class="dash-col">
-          <!-- CALENDAR -->
           <div class="panel">
             <div class="panel-head">
               <div><div class="panel-title">Gestión de slots semanales</div><div class="panel-sub">Haz clic en un slot para cambiar su estado</div></div>
@@ -1015,8 +1412,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
               </div>
             </div>
           </div>
-
-          <!-- PUESTOS -->
           <div class="panel">
             <div class="panel-head">
               <div><div class="panel-title">Puestos de prácticas · Ahora mismo</div><div class="panel-sub">Clic para cambiar estado</div></div>
@@ -1033,7 +1428,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
         </div>
 
         <div class="dash-col">
-          <!-- ALERTS -->
           <div class="panel">
             <div class="panel-head"><div class="panel-title">⚠️ Alertas activas</div></div>
             <div class="panel-body">
@@ -1045,8 +1439,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
               </div>
             </div>
           </div>
-
-          <!-- SLOT EDITOR -->
           <div class="panel">
             <div class="panel-head"><div class="panel-title">Configurar disponibilidad</div></div>
             <div class="panel-body">
@@ -1055,7 +1447,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
                 <div class="se-tab" onclick="setTab(this,'tab-tarifas')">Tarifas</div>
                 <div class="se-tab" onclick="setTab(this,'tab-bloqueo')">Bloqueos</div>
               </div>
-              <!-- Horarios -->
               <div id="tab-horarios">
                 <div class="se-field"><label class="se-lbl">Días para externos</label>
                   <div class="days-picker">
@@ -1074,75 +1465,37 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
                 </div>
                 <div class="se-field"><label class="se-lbl">Puestos para externos</label>
                   <div class="puestos-picker">
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P1</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P2</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P3</div>
-                    <div class="pp-btn" onclick="this.classList.toggle('sel')">P4</div>
-                    <div class="pp-btn" onclick="this.classList.toggle('sel')">P5</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P6</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P7</div>
-                    <div class="pp-btn blk">P8</div>
-                    <div class="pp-btn blk">P9</div>
-                    <div class="pp-btn blk">P10</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P11</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P12</div>
-                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P13</div>
-                    <div class="pp-btn" onclick="this.classList.toggle('sel')">P14</div>
-                    <div class="pp-btn" onclick="this.classList.toggle('sel')">P15</div>
+                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P1</div><div class="pp-btn sel" onclick="this.classList.toggle('sel')">P2</div><div class="pp-btn sel" onclick="this.classList.toggle('sel')">P3</div><div class="pp-btn" onclick="this.classList.toggle('sel')">P4</div><div class="pp-btn" onclick="this.classList.toggle('sel')">P5</div>
+                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P6</div><div class="pp-btn sel" onclick="this.classList.toggle('sel')">P7</div><div class="pp-btn blk">P8</div><div class="pp-btn blk">P9</div><div class="pp-btn blk">P10</div>
+                    <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P11</div><div class="pp-btn sel" onclick="this.classList.toggle('sel')">P12</div><div class="pp-btn sel" onclick="this.classList.toggle('sel')">P13</div><div class="pp-btn" onclick="this.classList.toggle('sel')">P14</div><div class="pp-btn" onclick="this.classList.toggle('sel')">P15</div>
                   </div>
-                  <div style="font-size:.62rem;color:rgba(245,240,230,.2);margin-top:.35rem;">P8–P10 bloqueados por mantenimiento</div>
                 </div>
                 <button class="se-btn se-btn-primary" onclick="showToast('✅ Disponibilidad guardada correctamente')">Guardar disponibilidad</button>
               </div>
-              <!-- Tarifas -->
               <div id="tab-tarifas" style="display:none;">
-                <div class="se-field"><label class="se-lbl">Fee instalaciones (externo €/h)</label><input class="se-input" type="number" value="10" min="0" max="50" step="0.5"></div>
-                <div class="se-field"><label class="se-lbl">Precio bola</label><select class="se-input"><option>Incluido en el fee</option><option>Tarifa separada</option></select></div>
-                <div class="se-field"><label class="se-lbl">Descuento socios FairwayPro Elite</label><select class="se-input"><option>Sin descuento</option><option selected>−15%</option><option>−20%</option></select></div>
-                <button class="se-btn se-btn-primary" onclick="showToast('✅ Tarifas actualizadas')">Guardar tarifas</button>
+                <div class="se-field"><label class="se-lbl">Fee instalaciones (externo €/h)</label><input class="se-input" type="number" value="10"></div>
+                <div class="se-field"><label class="se-lbl">Fee socio (€/h)</label><input class="se-input" type="number" value="0"></div>
+                <div class="se-field"><label class="se-lbl">Bolas incluidas (bultos)</label><select class="se-input"><option>1 (50 bolas)</option><option>2 (100 bolas)</option><option>Sin incluir</option></select></div>
+                <button class="se-btn se-btn-primary" onclick="showToast('✅ Tarifas guardadas')">Guardar tarifas</button>
               </div>
-              <!-- Bloqueo -->
               <div id="tab-bloqueo" style="display:none;">
-                <div class="se-field"><label class="se-lbl">Motivo</label><select class="se-input"><option>Torneo interno</option><option>Mantenimiento</option><option>Evento privado</option><option>Festivo</option></select></div>
+                <div class="se-field"><label class="se-lbl">Razón del bloqueo</label><select class="se-input"><option>Torneo</option><option>Mantenimiento</option><option>Evento privado</option><option>Otro</option></select></div>
                 <div class="se-row2">
-                  <div class="se-field"><label class="se-lbl">Fecha inicio</label><input class="se-input" type="date" value="2025-02-15"></div>
-                  <div class="se-field"><label class="se-lbl">Fecha fin</label><input class="se-input" type="date" value="2025-02-15"></div>
+                  <div class="se-field"><label class="se-lbl">Desde</label><input class="se-input" type="date" value="2025-02-15"></div>
+                  <div class="se-field"><label class="se-lbl">Hasta</label><input class="se-input" type="date" value="2025-02-15"></div>
                 </div>
-                <div class="se-field"><label class="se-lbl">Nota para profesores</label><input class="se-input" type="text" placeholder="Ej: Torneo de socios, campo completo"></div>
-                <button class="se-btn se-btn-danger" onclick="showToast('🚫 Bloqueo aplicado · Profesores notificados automáticamente')">Aplicar bloqueo</button>
+                <button class="se-btn se-btn-danger" onclick="showToast('🚫 Bloqueo creado para ese período')">Bloquear período</button>
               </div>
             </div>
           </div>
-
-          <!-- REVENUE -->
           <div class="panel">
-            <div class="panel-head"><div class="panel-title">Ingresos · últimas 5 semanas</div></div>
-            <div class="panel-body">
-              <div class="rev-bars">
-                <div class="rev-bw"><div class="rev-b own" style="height:40%"></div><div class="rev-b ext" style="height:18%"></div><div class="rev-bl">18 En</div></div>
-                <div class="rev-bw"><div class="rev-b own" style="height:48%"></div><div class="rev-b ext" style="height:28%"></div><div class="rev-bl">25 En</div></div>
-                <div class="rev-bw"><div class="rev-b own" style="height:38%"></div><div class="rev-b ext" style="height:22%"></div><div class="rev-bl">1 Feb</div></div>
-                <div class="rev-bw"><div class="rev-b own" style="height:58%"></div><div class="rev-b ext" style="height:38%"></div><div class="rev-bl">8 Feb</div></div>
-                <div class="rev-bw"><div class="rev-b own" style="height:52%"></div><div class="rev-b ext" style="height:52%"></div><div class="rev-bl">Esta sem</div></div>
-              </div>
-              <div class="rev-legend">
-                <div class="rev-leg"><div class="rev-leg-dot" style="background:var(--g4)"></div>Fee socios</div>
-                <div class="rev-leg"><div class="rev-leg-dot" style="background:var(--gold)"></div>Fee externos ↑</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- PROFESORES -->
-          <div class="panel">
-            <div class="panel-head"><div class="panel-title">Profesores vinculados</div></div>
+            <div class="panel-head"><div class="panel-title">Profesores del club</div></div>
             <div class="panel-body">
               <div class="pro-list">
-                <div class="pro-row"><div class="pro-av">⛳</div><div><div class="pro-name">Carlos Medina</div><div class="pro-role">PGA · 8 clases este mes</div></div><div class="pro-status"><div class="sdot active"></div><span style="font-size:.66rem;color:var(--g5);">Activo</span></div><div class="pro-slots">6/10</div><div class="toggle on" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
-                <div class="pro-row"><div class="pro-av">🏌️‍♀️</div><div><div class="pro-name">Laura Sánchez</div><div class="pro-role">Federada · 5 clases este mes</div></div><div class="pro-status"><div class="sdot active"></div><span style="font-size:.66rem;color:var(--g5);">Activo</span></div><div class="pro-slots">4/8</div><div class="toggle on" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
-                <div class="pro-row"><div class="pro-av">🎯</div><div><div class="pro-name">Marcos Gil</div><div class="pro-role">Trainee · 2 clases este mes</div></div><div class="pro-status"><div class="sdot pending"></div><span style="font-size:.66rem;color:var(--amber);">Pendiente</span></div><div class="pro-slots">2/5</div><div class="toggle" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
-                <div class="pro-row"><div class="pro-av">🏆</div><div><div class="pro-name">Rafael Torres</div><div class="pro-role">Ex-tour · solo socios</div></div><div class="pro-status"><div class="sdot off"></div><span style="font-size:.66rem;color:rgba(245,240,230,.25);">Sin ext.</span></div><div class="pro-slots">—</div><div class="toggle" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
+                <div class="pro-row" onclick="showView('view-profile-pro')"><div class="pro-av">⛳</div><div><div class="pro-name">Carlos Medina</div><div class="pro-role">PGA · 143 clases</div></div><div class="pro-status"><div class="sdot active"></div><div style="font-size:.65rem;color:rgba(245,240,230,.35);">Activo</div></div><div class="pro-slots" style="margin-left:.5rem;">3 slots hoy</div><div class="toggle on" onclick="event.stopPropagation();toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
+                <div class="pro-row" onclick="showView('view-profile-pro')"><div class="pro-av">🏌️‍♀️</div><div><div class="pro-name">Laura Sánchez</div><div class="pro-role">PGA Certificada · 89 clases</div></div><div class="pro-status"><div class="sdot pending"></div><div style="font-size:.65rem;color:rgba(245,240,230,.35);">Pendiente sáb.</div></div><div class="pro-slots" style="margin-left:.5rem;">1 slot hoy</div><div class="toggle on" onclick="event.stopPropagation();toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
+                <div class="pro-row"><div class="pro-av">🏆</div><div><div class="pro-name">Álvaro Ruiz</div><div class="pro-role">Competición · 211 clases</div></div><div class="pro-status"><div class="sdot off"></div><div style="font-size:.65rem;color:rgba(245,240,230,.35);">Descanso</div></div><div class="pro-slots" style="margin-left:.5rem;">0 slots hoy</div><div class="toggle" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div></div>
               </div>
-              <button class="se-btn se-btn-secondary" style="margin-top:.9rem;" onclick="showToast('📧 Invitación enviada al nuevo profesor')">+ Invitar profesor</button>
             </div>
           </div>
         </div>
@@ -1159,20 +1512,20 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
   <aside class="sidebar">
     <div class="sb-logo"><div class="logo" style="font-size:1.25rem;">Fairway<em>Pro</em></div></div>
     <div class="sb-entity">
-      <div class="sb-entity-name">Carlos Medina<br>La Herrería · Madrid</div>
-      <span class="sb-plan">PLAN ELITE</span>
+      <div class="sb-entity-name">Carlos Medina</div>
+      <span class="sb-plan">PRO VERIFICADO</span>
     </div>
     <nav class="sb-nav">
       <div class="sb-section">Principal</div>
-      <div class="sb-item active"><span class="sb-icon">📊</span>Panel general</div>
-      <div class="sb-item" onclick="showToast('📅 Agenda completa — próximamente')"><span class="sb-icon">📅</span>Mi agenda</div>
-      <div class="sb-item" onclick="showToast('👥 Módulo de alumnos — próximamente')"><span class="sb-icon">👥</span>Mis alumnos</div>
-      <div class="sb-section">Gestión</div>
-      <div class="sb-item" onclick="showToast('⛳ Clubs vinculados — próximamente')"><span class="sb-icon">⛳</span>Mis clubs</div>
-      <div class="sb-item" onclick="showToast('🎮 Skills y validaciones — próximamente')"><span class="sb-icon">🎮</span>Skills & Validaciones</div>
-      <div class="sb-item" onclick="showToast('💶 Módulo de ingresos — próximamente')"><span class="sb-icon">💶</span>Ingresos</div>
-      <div class="sb-section">Perfil</div>
-      <div class="sb-item" onclick="showToast('⚙️ Configuración — próximamente')"><span class="sb-icon">⚙️</span>Mi perfil público</div>
+      <div class="sb-item active"><span class="sb-icon">📅</span>Mi agenda</div>
+      <div class="sb-item" onclick="showToast('💶 Módulo de ingresos')"><span class="sb-icon">💶</span>Ingresos</div>
+      <div class="sb-item" onclick="showView('view-profile-pro')"><span class="sb-icon">👤</span>Mi perfil</div>
+      <div class="sb-section">Alumnos</div>
+      <div class="sb-item" onclick="showToast('👥 Lista de alumnos')"><span class="sb-icon">👥</span>Mis alumnos</div>
+      <div class="sb-item" onclick="openModal('modal-validate')"><span class="sb-icon">✅</span>Validar skills</div>
+      <div class="sb-section">Club</div>
+      <div class="sb-item" onclick="showToast('📍 Gestión de puntos de encuentro')"><span class="sb-icon">📍</span>Mis campos</div>
+      <div class="sb-item" onclick="showToast('🏆 Torneos disponibles')"><span class="sb-icon">🏆</span>Torneos</div>
     </nav>
     <div class="sb-footer">
       <div class="sb-user">
@@ -1181,71 +1534,50 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
       </div>
     </div>
   </aside>
-
   <div class="dash-main">
     <header class="topbar">
       <div class="topbar-title">Panel del <em>Profesor</em></div>
       <div class="tb-right">
         <div class="tb-date">Mar, 11 Feb 2025 · 10:24h</div>
-        <div class="tb-notif" onclick="showToast('🔔 2 alumnos pendientes de validación de skills')">🔔<div class="tb-badge">2</div></div>
-        <button class="btn-gold" style="font-size:.75rem;padding:.4rem .9rem;" onclick="showView('view-landing')">← Volver a la web</button>
+        <div class="tb-notif" onclick="showToast('🔔 Tienes 2 reservas nuevas')">🔔<div class="tb-badge">2</div></div>
+        <button class="btn-gold" style="font-size:.75rem;padding:.4rem .9rem;" onclick="showView('view-landing')">← Web pública</button>
       </div>
     </header>
-
     <div class="dash-content">
-      <!-- KPIs -->
       <div class="kpi-strip">
-        <div class="kpi-card k1"><div class="kpi-lbl">Ingresos este mes</div><div class="kpi-val">1.430€</div><div class="kpi-sub">22 clases · 8 alumnos externos</div><div class="kpi-trend trend-up">+18% ↑</div></div>
-        <div class="kpi-card k2"><div class="kpi-lbl">Clases esta semana</div><div class="kpi-val">6</div><div class="kpi-sub">Lun–Vie · 2 socios · 4 externos</div><div class="kpi-trend trend-up">+2 ↑</div></div>
-        <div class="kpi-card k3"><div class="kpi-lbl">Validaciones pendientes</div><div class="kpi-val">3</div><div class="kpi-sub">Skills de alumnos por validar</div><div class="kpi-trend trend-warn">!</div></div>
-        <div class="kpi-card k4"><div class="kpi-lbl">Rating medio</div><div class="kpi-val">4.98★</div><div class="kpi-sub">143 reseñas verificadas</div><div class="kpi-trend trend-up">↑</div></div>
+        <div class="kpi-card k1"><div class="kpi-lbl">Ingresos este mes</div><div class="kpi-val">1.430€</div><div class="kpi-sub">Neto tras comisión 8%</div><div class="kpi-trend trend-up">+18% ↑</div></div>
+        <div class="kpi-card k2"><div class="kpi-lbl">Clases esta semana</div><div class="kpi-val">8</div><div class="kpi-sub">3 externos · 5 socios</div><div class="kpi-trend trend-up">+1 ↑</div></div>
+        <div class="kpi-card k3"><div class="kpi-lbl">Skills a validar</div><div class="kpi-val">4</div><div class="kpi-sub">Pendientes de revisión</div><div class="kpi-trend trend-warn">!</div></div>
+        <div class="kpi-card k4"><div class="kpi-lbl">Valoración media</div><div class="kpi-val">4.98★</div><div class="kpi-sub">143 clases completadas</div><div class="kpi-trend trend-up">↑</div></div>
       </div>
 
       <div class="dash-grid">
         <div class="dash-col">
-          <!-- AGENDA SEMANAL -->
           <div class="panel">
             <div class="panel-head">
-              <div><div class="panel-title">Agenda semanal</div><div class="panel-sub">Slots disponibles según los horarios publicados por el club</div></div>
-              <button class="add-slot-btn" onclick="showToast('📅 Slots del club disponibles: L-V 10:00-18:00')">Ver slots del club</button>
+              <div><div class="panel-title">Agenda semanal</div><div class="panel-sub">Semana del 3 al 9 de Febrero</div></div>
+              <button class="add-slot-btn" onclick="showToast('+ Nuevo slot abierto')">+ Abrir slot</button>
             </div>
             <div class="panel-body">
               <div class="pro-agenda-grid" id="pro-agenda"></div>
             </div>
           </div>
 
-          <!-- PROXIMAS CLASES -->
           <div class="panel">
-            <div class="panel-head"><div class="panel-title">Próximas clases hoy</div></div>
+            <div class="panel-head"><div class="panel-title">Próximas clases</div></div>
             <div class="panel-body">
               <div class="next-class-list">
-                <div class="next-class">
-                  <div><div class="nc-time">10:00</div><div class="nc-time-sub">1h · P12</div></div>
-                  <div class="nc-info"><div class="nc-student">Javier Morales</div><div class="nc-detail">📍 Entrada campo norte · HCP 18.4 · Nivel 6</div></div>
-                  <div class="nc-badge ext">EXTERNO</div>
-                  <button class="validate-btn" onclick="openModal('modal-validate')">Validar skill</button>
-                </div>
-                <div class="next-class">
-                  <div><div class="nc-time">12:00</div><div class="nc-time-sub">1h · P7</div></div>
-                  <div class="nc-info"><div class="nc-student">Ana García</div><div class="nc-detail">📍 Puesto 7 · campo sur · HCP 12.1 · Nivel 8</div></div>
-                  <div class="nc-badge socio">SOCIA</div>
-                  <button class="validate-btn" onclick="openModal('modal-validate')">Validar skill</button>
-                </div>
-                <div class="next-class">
-                  <div><div class="nc-time">16:00</div><div class="nc-time-sub">1.5h · P3</div></div>
-                  <div class="nc-info"><div class="nc-student">Pedro Ruiz</div><div class="nc-detail">📍 Putting green norte · HCP 22 · Nivel 3</div></div>
-                  <div class="nc-badge ext">EXTERNO</div>
-                  <button class="validate-btn" onclick="openModal('modal-validate')">Validar skill</button>
-                </div>
+                <div class="next-class"><div class="nc-time">10:00<div class="nc-time-sub">Hoy</div></div><div class="nc-info"><div class="nc-student">Javier Morales</div><div class="nc-detail">1h · Campo Norte P12 · Drive y swing</div></div><span class="nc-badge ext">EXT</span></div>
+                <div class="next-class"><div class="nc-time">12:00<div class="nc-time-sub">Hoy</div></div><div class="nc-info"><div class="nc-student">Ana García</div><div class="nc-detail">1h · Campo Norte P8 · Juego corto</div></div><span class="nc-badge socio">SOCIO</span></div>
+                <div class="next-class"><div class="nc-time">16:00<div class="nc-time-sub">Mañana</div></div><div class="nc-info"><div class="nc-student">Pedro Ruiz</div><div class="nc-detail">1.5h · Campo Sur P3 · Iniciación</div></div><span class="nc-badge ext">EXT</span></div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="dash-col">
-          <!-- EARNINGS -->
           <div class="panel">
-            <div class="panel-head"><div class="panel-title">Mis ingresos</div></div>
+            <div class="panel-head"><div class="panel-title">Ingresos por mes</div></div>
             <div class="panel-body">
               <div class="earnings-grid">
                 <div class="earn-card highlight"><div class="earn-lbl">Este mes</div><div class="earn-val">1.430€</div><div class="earn-sub">Neto tras comisión 8%</div></div>
@@ -1267,40 +1599,17 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
             </div>
           </div>
 
-          <!-- ALUMNOS -->
           <div class="panel">
             <div class="panel-head"><div class="panel-title">Mis alumnos activos</div></div>
             <div class="panel-body">
               <div class="student-list">
-                <div class="student-row" onclick="openModal('modal-validate')">
-                  <div class="student-av">🏌️</div>
-                  <div><div class="student-name">Javier Morales</div><div class="student-meta">14 clases · HCP 18.4 · Externo</div></div>
-                  <div class="student-level"><div class="student-lvl-badge">NV 6</div><div class="student-skills">9/18 skills ✅</div></div>
-                  <button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button>
-                </div>
-                <div class="student-row" onclick="openModal('modal-validate')">
-                  <div class="student-av">👩</div>
-                  <div><div class="student-name">Ana García</div><div class="student-meta">22 clases · HCP 12.1 · Socia</div></div>
-                  <div class="student-level"><div class="student-lvl-badge">NV 8</div><div class="student-skills">14/18 skills ✅</div></div>
-                  <button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button>
-                </div>
-                <div class="student-row" onclick="openModal('modal-validate')">
-                  <div class="student-av">👨</div>
-                  <div><div class="student-name">Pedro Ruiz</div><div class="student-meta">6 clases · HCP 22 · Externo</div></div>
-                  <div class="student-level"><div class="student-lvl-badge">NV 3</div><div class="student-skills">4/18 skills ✅</div></div>
-                  <button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button>
-                </div>
-                <div class="student-row">
-                  <div class="student-av">👩</div>
-                  <div><div class="student-name">Marta Puig</div><div class="student-meta">9 clases · HCP 28 · Externa</div></div>
-                  <div class="student-level"><div class="student-lvl-badge">NV 4</div><div class="student-skills">6/18 skills ✅</div></div>
-                  <button class="validate-btn" onclick="openModal('modal-validate')">Validar</button>
-                </div>
+                <div class="student-row" onclick="openModal('modal-validate')"><div class="student-av">🏌️</div><div><div class="student-name">Javier Morales</div><div class="student-meta">14 clases · HCP 18.4 · Externo</div></div><div class="student-level"><div class="student-lvl-badge">NV 6</div><div class="student-skills">9/18 skills ✅</div></div><button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button></div>
+                <div class="student-row" onclick="openModal('modal-validate')"><div class="student-av">👩</div><div><div class="student-name">Ana García</div><div class="student-meta">22 clases · HCP 12.1 · Socia</div></div><div class="student-level"><div class="student-lvl-badge">NV 8</div><div class="student-skills">14/18 skills ✅</div></div><button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button></div>
+                <div class="student-row" onclick="openModal('modal-validate')"><div class="student-av">👨</div><div><div class="student-name">Pedro Ruiz</div><div class="student-meta">6 clases · HCP 22 · Externo</div></div><div class="student-level"><div class="student-lvl-badge">NV 3</div><div class="student-skills">4/18 skills ✅</div></div><button class="validate-btn" onclick="event.stopPropagation();openModal('modal-validate')">Validar</button></div>
               </div>
             </div>
           </div>
 
-          <!-- PUNTO DE ENCUENTRO -->
           <div class="panel">
             <div class="panel-head"><div class="panel-title">📍 Mis puntos de encuentro</div></div>
             <div class="panel-body">
@@ -1309,11 +1618,6 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
                   <div style="font-size:.65rem;color:var(--gold2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem;">Club La Herrería</div>
                   <div style="font-size:.82rem;color:var(--cream);font-weight:500;">Entrada campo de prácticas Norte</div>
                   <div style="font-size:.68rem;color:rgba(245,240,230,.35);margin-top:.2rem;">Predeterminado para clases por defecto</div>
-                </div>
-                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:.8rem;">
-                  <div style="font-size:.65rem;color:rgba(245,240,230,.35);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem;">Clase de putting</div>
-                  <div style="font-size:.82rem;color:var(--cream);font-weight:500;">Putting green norte · junto al banderín 3</div>
-                  <div style="font-size:.68rem;color:rgba(245,240,230,.35);margin-top:.2rem;">Asignado automáticamente a clases de putting</div>
                 </div>
               </div>
               <button class="se-btn se-btn-secondary" style="margin-top:.9rem;" onclick="showToast('📍 Editor de puntos de encuentro — próximamente')">+ Añadir punto de encuentro</button>
@@ -1326,6 +1630,471 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 </div><!-- /view-pro -->
 
 
+<!-- ═══════════════════════════════
+  ④ PERFIL PÚBLICO — PROFESOR
+════════════════════════════════ -->
+<div class="view" id="view-profile-pro">
+  <nav class="nav-public">
+    <div class="logo">Fairway<em>Pro</em></div>
+    <div class="nav-right">
+      <button class="nav-demo" onclick="showView('view-landing')">← Volver a la web</button>
+      <button class="btn-primary" style="padding:.5rem 1.2rem;font-size:.78rem;" onclick="openModal('modal-reg')">Reservar clase</button>
+    </div>
+  </nav>
+  <div class="profile-view" style="padding-top:72px;">
+    <div class="profile-hero">
+      <button class="profile-back" onclick="showView('view-landing')">← Volver a profesores</button>
+      <div class="profile-hero-inner">
+        <div class="profile-avatar-big">⛳</div>
+        <div class="profile-info">
+          <span class="profile-type-badge badge-pro">🏅 Profesor PGA Verificado</span>
+          <div class="profile-name">Carlos Medina</div>
+          <div class="profile-subtitle">📍 Real Club de Golf de Madrid · El Escorial</div>
+          <div class="profile-stats-row">
+            <div class="p-stat"><div class="p-stat-val">4.98★</div><div class="p-stat-lbl">Valoración</div></div>
+            <div class="p-stat"><div class="p-stat-val">143</div><div class="p-stat-lbl">Clases</div></div>
+            <div class="p-stat"><div class="p-stat-val">55€</div><div class="p-stat-lbl">/ hora socio</div></div>
+            <div class="p-stat"><div class="p-stat-val">65€</div><div class="p-stat-lbl">/ hora externo</div></div>
+          </div>
+        </div>
+        <div style="margin-left:auto;flex-shrink:0;">
+          <button class="btn-gold" onclick="showToast('📅 Abriendo disponibilidad de Carlos...')">Reservar clase →</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-tabs">
+      <div class="profile-tab active" onclick="setProfileTab(this,'ptab-info')">Información</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'ptab-agenda')">Agenda</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'ptab-reviews')">Reseñas</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'ptab-skills')">Skills que enseña</div>
+    </div>
+    <div class="profile-content">
+      <div id="ptab-info">
+        <div class="profile-grid">
+          <div>
+            <div class="profile-card" style="margin-bottom:1.2rem;">
+              <div class="profile-card-title">Sobre Carlos</div>
+              <p style="color:var(--muted);font-size:.9rem;line-height:1.7;">Licenciado en ciencias del deporte y certificado PGA desde 2014. Especialista en jugadores que empiezan y en la corrección de errores de swing en intermedios. Trabajo en el Real Club de Golf de Madrid pero acepto alumnos externos en todos mis horarios de mañana.</p>
+            </div>
+            <div class="profile-card">
+              <div class="profile-card-title">Especialidades</div>
+              <div class="profile-tag-row">
+                <span class="profile-tag">Drive y swing</span>
+                <span class="profile-tag">Principiantes</span>
+                <span class="profile-tag">Corrección técnica</span>
+                <span class="profile-tag">Biomecánica</span>
+                <span class="profile-tag">Análisis de vídeo</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="profile-card" style="margin-bottom:1.2rem;">
+              <div class="profile-card-title">Valoración</div>
+              <div style="display:flex;align-items:baseline;gap:.5rem;">
+                <span class="rating-big">4.98</span>
+                <span class="rating-stars">★★★★★</span>
+              </div>
+              <div class="rating-sub">Basado en 143 clases completadas</div>
+            </div>
+            <div class="profile-card">
+              <div class="profile-card-title">Disponibilidad habitual</div>
+              <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem;">
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;"><span style="color:var(--muted);">Lun–Vie</span><span style="color:var(--g2);font-weight:500;">10:00 – 18:00</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;"><span style="color:var(--muted);">Sábado</span><span style="color:var(--g2);font-weight:500;">09:00 – 13:00</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;"><span style="color:var(--muted);">Domingo</span><span style="color:#c0392b;font-weight:500;">Cerrado</span></div>
+              </div>
+              <button class="btn-primary" style="width:100%;margin-top:1rem;text-align:center;" onclick="showToast('📅 Ver agenda completa — próximamente')">Ver disponibilidad completa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ptab-agenda" style="display:none;">
+        <p style="color:var(--muted);">Próximamente: agenda interactiva en tiempo real para reservar directamente con Carlos.</p>
+      </div>
+      <div id="ptab-reviews" style="display:none;">
+        <div style="display:flex;flex-direction:column;gap:1rem;max-width:700px;">
+          <div style="background:var(--white);border:1px solid var(--cream2);border-radius:6px;padding:1.2rem;">
+            <div style="color:var(--gold);margin-bottom:.4rem;">★★★★★</div>
+            <p style="font-style:italic;color:var(--g2);font-size:.9rem;line-height:1.6;">"Carlos es un profesor increíble. En 3 clases mejoré mi drive más que en dos años de ir solo al campo."</p>
+            <div style="margin-top:.8rem;font-size:.8rem;color:var(--muted);">Javier M. · Externo · Enero 2025</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--cream2);border-radius:6px;padding:1.2rem;">
+            <div style="color:var(--gold);margin-bottom:.4rem;">★★★★★</div>
+            <p style="font-style:italic;color:var(--g2);font-size:.9rem;line-height:1.6;">"Muy profesional. Explica todo con paciencia y usa vídeo para que veas tus errores. Super recomendable."</p>
+            <div style="margin-top:.8rem;font-size:.8rem;color:var(--muted);">Marta P. · Socia · Diciembre 2024</div>
+          </div>
+        </div>
+      </div>
+      <div id="ptab-skills" style="display:none;">
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;">Skills que Carlos puede validar en tus clases:</p>
+        <div class="profile-tag-row">
+          <span class="profile-tag">⛳ Postura y agarre</span>
+          <span class="profile-tag">💨 Drive consistente</span>
+          <span class="profile-tag">🎯 Hierros 6–9</span>
+          <span class="profile-tag">🏴 Chip básico</span>
+          <span class="profile-tag">🟢 Putt básico</span>
+          <span class="profile-tag">📐 Alineación</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /view-profile-pro -->
+
+
+<!-- ═══════════════════════════════
+  ⑤ PERFIL PÚBLICO — CLUB
+════════════════════════════════ -->
+<div class="view" id="view-profile-club">
+  <nav class="nav-public">
+    <div class="logo">Fairway<em>Pro</em></div>
+    <div class="nav-right">
+      <button class="nav-demo" onclick="showView('view-club')">← Panel club</button>
+      <button class="btn-primary" style="padding:.5rem 1.2rem;font-size:.78rem;" onclick="showToast('🌐 Página pública del club')">Ver página pública</button>
+    </div>
+  </nav>
+  <div class="profile-view" style="padding-top:72px;">
+    <div class="profile-hero">
+      <button class="profile-back" onclick="showView('view-club')">← Volver al panel</button>
+      <div class="profile-hero-inner">
+        <div class="profile-avatar-big">🏛️</div>
+        <div class="profile-info">
+          <span class="profile-type-badge badge-club">🏌️ Club Partner</span>
+          <div class="profile-name">Club de Golf La Herrería</div>
+          <div class="profile-subtitle">📍 El Escorial, Madrid · Campo de 18 hoyos · Par 70</div>
+          <div class="profile-stats-row">
+            <div class="p-stat"><div class="p-stat-val">4</div><div class="p-stat-lbl">Profesores</div></div>
+            <div class="p-stat"><div class="p-stat-val">15</div><div class="p-stat-lbl">Puestos práctica</div></div>
+            <div class="p-stat"><div class="p-stat-val">10€</div><div class="p-stat-lbl">Fee externo/h</div></div>
+            <div class="p-stat"><div class="p-stat-val">4.7★</div><div class="p-stat-lbl">Valoración</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-tabs">
+      <div class="profile-tab active" onclick="setProfileTab(this,'ctab-info')">Información</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'ctab-profesores')">Profesores</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'ctab-torneos')">Torneos</div>
+    </div>
+    <div class="profile-content">
+      <div id="ctab-info">
+        <div class="profile-grid">
+          <div>
+            <div class="profile-card" style="margin-bottom:1.2rem;">
+              <div class="profile-card-title">Sobre el club</div>
+              <p style="color:var(--muted);font-size:.9rem;line-height:1.7;">Club de golf en El Escorial con más de 50 años de historia. Disponemos de campo de 18 hoyos, campo de prácticas con 15 puestos cubiertos y escuela de golf. Aceptamos jugadores externos a través de FairwayPro con acceso QR.</p>
+            </div>
+            <div class="profile-card">
+              <div class="profile-card-title">Instalaciones</div>
+              <div class="profile-tag-row">
+                <span class="profile-tag">⛳ 18 hoyos · Par 70</span>
+                <span class="profile-tag">🏌️ 15 puestos de práctica</span>
+                <span class="profile-tag">🟢 Putting green</span>
+                <span class="profile-tag">🏖️ Bunkers de práctica</span>
+                <span class="profile-tag">🍽️ Restaurante</span>
+                <span class="profile-tag">🛒 Pro Shop</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="profile-card">
+              <div class="profile-card-title">Acceso para externos</div>
+              <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem;">
+                <div style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;"><span style="color:var(--g5);">✅</span><span style="color:var(--g2);">Acepta jugadores externos vía FairwayPro</span></div>
+                <div style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;"><span style="color:var(--g5);">✅</span><span style="color:var(--g2);">Acceso con QR en recepción</span></div>
+                <div style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;"><span style="color:var(--g5);">✅</span><span style="color:var(--g2);">Pago unificado (clase + bola)</span></div>
+                <div style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;"><span style="color:var(--g5);">✅</span><span style="color:var(--g2);">Bolas incluidas en el fee</span></div>
+              </div>
+              <div style="margin-top:1rem;padding:.8rem;background:var(--cream);border-radius:4px;font-size:.82rem;color:var(--muted);">
+                <strong style="color:var(--g2);">Fee de instalaciones</strong><br>10€/h · Incluye puesto + 50 bolas
+              </div>
+              <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="showToast('🔍 Ver profesores del club')">Ver profesores disponibles</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ctab-profesores" style="display:none;">
+        <div class="coaches-grid">
+          <div class="coach-card" onclick="showView('view-profile-pro')">
+            <div class="coach-img" style="background:linear-gradient(135deg,#2d5a3d,#1a3a2a)">
+              <div class="coach-emoji">⛳</div>
+              <div class="coach-img-overlay"></div>
+              <div class="coach-avail"><div class="avail-dot"></div>Acepta externos</div>
+            </div>
+            <div class="coach-body">
+              <div class="coach-name">Carlos Medina</div>
+              <div class="coach-loc">PGA Certificado · 143 clases</div>
+              <div class="coach-foot">
+                <div class="coach-price">55€ <span>/ socio · 65€ ext.</span></div>
+                <button class="btn-ver">Ver perfil</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ctab-torneos" style="display:none;">
+        <p style="color:var(--muted);margin-bottom:1.5rem;">Torneos organizados por este club:</p>
+        <div class="torneo-card featured" style="max-width:400px;background:var(--white);border-color:var(--cream2);" onclick="openModal('modal-torneo')">
+          <div class="torneo-banner" style="background:linear-gradient(135deg,#1a3a2a,#3a7a52);">🏆<div class="torneo-status t-status-open">Inscripción abierta</div></div>
+          <div class="torneo-body">
+            <div class="torneo-name" style="color:var(--g1);">Copa Primavera FairwayPro 2025</div>
+            <div class="torneo-meta">
+              <div class="torneo-meta-row" style="color:var(--muted);">📅 15 Marzo 2025</div>
+              <div class="torneo-meta-row" style="color:var(--muted);">🏌️ Stableford · 18 hoyos</div>
+            </div>
+            <div class="torneo-footer" style="border-top-color:var(--cream2);">
+              <div class="torneo-players" style="color:var(--muted);">Inscritos: <strong style="color:var(--g2);">34/80</strong></div>
+              <button class="torneo-btn" onclick="event.stopPropagation();openModal('modal-torneo')">Inscribirse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /view-profile-club -->
+
+
+<!-- ═══════════════════════════════
+  ⑥ PERFIL ALUMNO
+════════════════════════════════ -->
+<div class="view" id="view-profile-alumno">
+  <nav class="nav-public">
+    <div class="logo">Fairway<em>Pro</em></div>
+    <div class="nav-right">
+      <button class="nav-demo" onclick="showView('view-landing')">← Inicio</button>
+    </div>
+  </nav>
+  <div class="profile-view" style="padding-top:72px;">
+    <div class="profile-hero">
+      <button class="profile-back" onclick="showView('view-landing')">← Volver al inicio</button>
+      <div class="profile-hero-inner">
+        <div class="profile-avatar-big">🏌️</div>
+        <div class="profile-info">
+          <span class="profile-type-badge badge-alumno">⚡ Nivel 6 · Fairway Ace</span>
+          <div class="profile-name">Javier Morales</div>
+          <div class="profile-subtitle">📍 Madrid · HCP 18.4 · Externo</div>
+          <div class="profile-stats-row">
+            <div class="p-stat"><div class="p-stat-val">14</div><div class="p-stat-lbl">Clases</div></div>
+            <div class="p-stat"><div class="p-stat-val">9/18</div><div class="p-stat-lbl">Skills</div></div>
+            <div class="p-stat"><div class="p-stat-val">3</div><div class="p-stat-lbl">Torneos</div></div>
+            <div class="p-stat"><div class="p-stat-val">1.240</div><div class="p-stat-lbl">XP</div></div>
+          </div>
+        </div>
+        <div style="margin-left:auto;flex-shrink:0;">
+          <button class="btn-gold" onclick="document.getElementById('profesores').scrollIntoView();showView('view-landing')">Buscar mi profesor →</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-tabs">
+      <div class="profile-tab active" onclick="setProfileTab(this,'atab-progreso')">Mi progreso</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'atab-clases')">Mis clases</div>
+      <div class="profile-tab" onclick="setProfileTab(this,'atab-torneos')">Torneos</div>
+    </div>
+    <div class="profile-content">
+      <div id="atab-progreso">
+        <div class="profile-grid">
+          <div>
+            <div class="profile-card" style="margin-bottom:1.2rem;">
+              <div class="profile-card-title">Nivel y XP</div>
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7c5cbf,var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🏌️</div>
+                <div>
+                  <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--g2);">Javier Morales</div>
+                  <span style="display:inline-block;background:linear-gradient(135deg,#7c5cbf,#a78bfa);color:white;font-size:.65rem;font-weight:600;padding:.2rem .6rem;border-radius:10px;margin-top:.2rem;">⚡ NIVEL 6 · Fairway Ace</span>
+                </div>
+              </div>
+              <div style="margin-bottom:.4rem;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);">
+                <span>1.240 XP</span><span style="color:var(--gold);">Siguiente: 1.500 XP</span>
+              </div>
+              <div style="height:8px;background:var(--cream2);border-radius:4px;overflow:hidden;">
+                <div style="height:100%;width:68%;background:linear-gradient(90deg,#7c5cbf,var(--gold));border-radius:4px;"></div>
+              </div>
+            </div>
+            <div class="profile-card">
+              <div class="profile-card-title">Insignias</div>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+                <div style="width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.1);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem;" title="Primer drive">🏌️</div>
+                <div style="width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.1);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem;" title="Constante">🔥</div>
+                <div style="width:44px;height:44px;border-radius:50%;background:rgba(200,168,75,.1);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem;" title="Primer torneo">🏆</div>
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--cream2);border:2px solid var(--cream2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;opacity:.4;" title="Bloqueado">🎯</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="profile-card">
+              <div class="profile-card-title">Skills validados</div>
+              <div style="display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;">
+                  <span style="color:var(--g2);">⛳ Postura y agarre</span>
+                  <span style="color:var(--g5);font-size:.75rem;">✅ Validado por Carlos</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;">
+                  <span style="color:var(--g2);">💨 Drive consistente</span>
+                  <span style="color:var(--g5);font-size:.75rem;">✅ Validado</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;">
+                  <span style="color:var(--g2);">🏴 Chip básico</span>
+                  <span style="color:var(--g5);font-size:.75rem;">✅ Validado</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;">
+                  <span style="color:var(--muted);">🎯 Hierros 6–9</span>
+                  <span style="color:var(--amber);font-size:.75rem;">⏳ Pendiente</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;">
+                  <span style="color:var(--muted);opacity:.5;">🏖️ Salida de bunker</span>
+                  <span style="font-size:.75rem;opacity:.4;">🔒 Bloqueado</span>
+                </div>
+              </div>
+              <button class="btn-primary" style="width:100%;margin-top:1.2rem;" onclick="showToast('📚 Ver todo el árbol de skills')">Ver todos mis skills</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="atab-clases" style="display:none;">
+        <p style="color:var(--muted);">Próximamente: historial completo de clases y reservas futuras.</p>
+      </div>
+      <div id="atab-torneos" style="display:none;">
+        <p style="color:var(--muted);margin-bottom:1rem;">Torneos en los que participas o has participado:</p>
+        <div style="display:flex;flex-direction:column;gap:.8rem;max-width:500px;">
+          <div style="background:var(--white);border:1px solid var(--cream2);border-radius:6px;padding:1rem;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-family:'Playfair Display',serif;color:var(--g2);font-size:1rem;">Copa Primavera 2025</div>
+              <div style="font-size:.8rem;color:var(--muted);margin-top:.2rem;">15 Mar · La Herrería</div>
+            </div>
+            <span style="background:rgba(90,171,116,.15);border:1px solid rgba(90,171,116,.3);color:var(--g4);font-size:.72rem;padding:.25rem .6rem;border-radius:10px;">✅ Inscrito</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /view-profile-alumno -->
+
+
+<!-- ═══ MODALES ═══ -->
+
+<!-- MODAL: REGISTRO (NEW) -->
+<div class="modal-overlay" id="modal-reg">
+  <div class="modal reg-modal">
+    <div class="modal-header">
+      <div class="modal-title">Crear cuenta en FairwayPro</div>
+      <button class="modal-close" onclick="closeModal('modal-reg')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="reg-steps">
+        <div class="reg-step-dot active" id="rdot1"></div>
+        <div class="reg-step-dot" id="rdot2"></div>
+        <div class="reg-step-dot" id="rdot3"></div>
+      </div>
+
+      <!-- Step 1: Tipo de cuenta -->
+      <div id="reg-step1">
+        <p style="color:rgba(245,240,230,.5);font-size:.82rem;margin-bottom:1rem;">¿Con qué perfil quieres registrarte?</p>
+        <div class="reg-type-grid">
+          <div class="reg-type-card" onclick="selectRegType(this,'club')">
+            <span class="reg-type-icon">🏛️</span>
+            <div class="reg-type-name">Club</div>
+            <div class="reg-type-desc">Gestiona tu campo, profesores y torneos</div>
+          </div>
+          <div class="reg-type-card" onclick="selectRegType(this,'pro')">
+            <span class="reg-type-icon">🏅</span>
+            <div class="reg-type-name">Profesor</div>
+            <div class="reg-type-desc">Ofrece clases y llega a más alumnos</div>
+          </div>
+          <div class="reg-type-card" onclick="selectRegType(this,'alumno')">
+            <span class="reg-type-icon">🏌️</span>
+            <div class="reg-type-name">Alumno</div>
+            <div class="reg-type-desc">Busca clases, sube de nivel y compite</div>
+          </div>
+        </div>
+        <button class="reg-next" id="reg-next1" onclick="goRegStep(2)" style="opacity:.4;pointer-events:none;">Continuar →</button>
+      </div>
+
+      <!-- Step 2: Datos básicos -->
+      <div id="reg-step2" style="display:none;">
+        <div class="reg-form">
+          <div class="reg-form-row">
+            <div class="reg-field"><label class="reg-lbl">Nombre</label><input class="reg-input" type="text" placeholder="Tu nombre"></div>
+            <div class="reg-field"><label class="reg-lbl">Apellidos</label><input class="reg-input" type="text" placeholder="Tus apellidos"></div>
+          </div>
+          <div class="reg-field"><label class="reg-lbl">Email</label><input class="reg-input" type="email" placeholder="tu@email.com"></div>
+          <div class="reg-field"><label class="reg-lbl">Contraseña</label><input class="reg-input" type="password" placeholder="Mínimo 8 caracteres"></div>
+          <div id="reg-extra-club" style="display:none;">
+            <div class="reg-field"><label class="reg-lbl">Nombre del club</label><input class="reg-input" type="text" placeholder="Nombre oficial del club"></div>
+            <div class="reg-field"><label class="reg-lbl">Provincia</label><select class="reg-select"><option>Madrid</option><option>Barcelona</option><option>Sevilla</option><option>Valencia</option><option>Otra</option></select></div>
+          </div>
+          <div id="reg-extra-pro" style="display:none;">
+            <div class="reg-field"><label class="reg-lbl">Certificación</label><select class="reg-select"><option>PGA España</option><option>RFEGOLF</option><option>Otra certificación</option><option>Sin certificación</option></select></div>
+            <div class="reg-field"><label class="reg-lbl">Club actual (opcional)</label><input class="reg-input" type="text" placeholder="Club donde impartes clases"></div>
+          </div>
+          <div id="reg-extra-alumno" style="display:none;">
+            <div class="reg-form-row">
+              <div class="reg-field"><label class="reg-lbl">Hándicap</label><input class="reg-input" type="number" placeholder="54 si eres nuevo"></div>
+              <div class="reg-field"><label class="reg-lbl">Ciudad</label><input class="reg-input" type="text" placeholder="Tu ciudad"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reg-divider"></div>
+        <div class="reg-btn-row">
+          <button class="reg-back" onclick="goRegStep(1)">← Atrás</button>
+          <button class="reg-next" onclick="goRegStep(3)">Continuar →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Confirmación -->
+      <div id="reg-step3" style="display:none;">
+        <div class="reg-success">
+          <div class="reg-success-icon">🎉</div>
+          <div class="reg-success-title">¡Bienvenido/a a FairwayPro!</div>
+          <div class="reg-success-sub">Tu cuenta está lista. En segundos recibirás un email de confirmación. Una vez verificado, tendrás acceso a tu panel personalizado.</div>
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem;">
+            <button class="reg-next" onclick="closeModal('modal-reg');showView('view-profile-alumno')">Ir a mi perfil →</button>
+            <button class="reg-back" style="width:100%;text-align:center;" onclick="closeModal('modal-reg')">Explorar la plataforma primero</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: TORNEO (NEW) -->
+<div class="modal-overlay" id="modal-torneo">
+  <div class="modal" style="width:480px;">
+    <div class="modal-header">
+      <div class="modal-title">🏆 Copa Primavera FairwayPro 2025</div>
+      <button class="modal-close" onclick="closeModal('modal-torneo')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:6px;padding:1rem;margin-bottom:1.2rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+          <div><div style="font-size:.62rem;color:rgba(245,240,230,.3);text-transform:uppercase;letter-spacing:.06em;">Fecha</div><div style="color:var(--cream);font-size:.88rem;margin-top:.2rem;">15 Marzo 2025</div></div>
+          <div><div style="font-size:.62rem;color:rgba(245,240,230,.3);text-transform:uppercase;letter-spacing:.06em;">Club</div><div style="color:var(--cream);font-size:.88rem;margin-top:.2rem;">La Herrería · El Escorial</div></div>
+          <div><div style="font-size:.62rem;color:rgba(245,240,230,.3);text-transform:uppercase;letter-spacing:.06em;">Modalidad</div><div style="color:var(--cream);font-size:.88rem;margin-top:.2rem;">Stableford · 18 hoyos</div></div>
+          <div><div style="font-size:.62rem;color:rgba(245,240,230,.3);text-transform:uppercase;letter-spacing:.06em;">HCP límite</div><div style="color:var(--cream);font-size:.88rem;margin-top:.2rem;">0 – 36</div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <div style="font-size:.68rem;color:rgba(245,240,230,.3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;">Premios</div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;">
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:var(--gold);">🥇 1.er puesto</span><span style="color:var(--cream);">500€</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:rgba(245,240,230,.6);">🥈 2.º puesto</span><span style="color:var(--cream);">250€</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:rgba(245,240,230,.6);">🥉 3.er puesto</span><span style="color:var(--cream);">100€</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:rgba(245,240,230,.6);">🏅 Mejor externo</span><span style="color:var(--cream);">Material golf</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border-radius:4px;padding:.8rem;margin-bottom:1.2rem;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:.88rem;color:rgba(245,240,230,.6);">Plazas disponibles</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);">46 / 80</div>
+      </div>
+      <div style="background:rgba(90,171,116,.08);border:1px solid rgba(90,171,116,.2);border-radius:4px;padding:.8rem;margin-bottom:1.2rem;">
+        <div style="font-size:.75rem;color:var(--g6);">✅ No es necesario ser socio del club para inscribirse. Acceso con QR el día del torneo.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-close" style="background:none;border:none;color:rgba(245,240,230,.4);cursor:pointer;font-family:'Outfit',sans-serif;font-size:.85rem;" onclick="closeModal('modal-torneo')">Cancelar</button>
+      <button class="btn-gold" onclick="closeModal('modal-torneo');showToast('✅ Inscripción completada · Copa Primavera 2025 · Se enviará confirmación por email')">Inscribirse por 25€ →</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: NUEVO SLOT -->
 <div class="modal-overlay" id="modal-slot">
   <div class="modal">
@@ -1337,21 +2106,11 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
         <div class="se-field"><label class="se-lbl">Hora</label><select class="se-input"><option>10:00</option><option>11:00</option><option>12:00</option><option>16:00</option><option>17:00</option><option>18:00</option></select></div>
       </div>
       <div class="se-field"><label class="se-lbl">Duración</label><select class="se-input"><option>30 min</option><option selected>60 min</option><option>90 min</option></select></div>
-      <div class="se-field"><label class="se-lbl">Puestos a habilitar</label>
-        <div class="puestos-picker">
-          <div class="pp-btn" onclick="this.classList.toggle('sel')">P1</div>
-          <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P2</div>
-          <div class="pp-btn sel" onclick="this.classList.toggle('sel')">P3</div>
-          <div class="pp-btn" onclick="this.classList.toggle('sel')">P4</div>
-          <div class="pp-btn" onclick="this.classList.toggle('sel')">P5</div>
-        </div>
-      </div>
-      <div class="se-field"><label class="se-lbl">Profesor asignado (opcional)</label><select class="se-input"><option>Cualquier profesor del club</option><option>Carlos Medina</option><option>Laura Sánchez</option></select></div>
       <div class="se-field"><label class="se-lbl">Fee de instalaciones (€)</label><input class="se-input" type="number" value="10"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn-secondary" style="padding:.55rem 1.1rem;font-size:.82rem;" onclick="closeModal('modal-slot')">Cancelar</button>
-      <button class="btn-gold" onclick="closeModal('modal-slot');showToast('✅ Slot publicado · Los profesores ya pueden usarlo')">Publicar slot</button>
+      <button class="btn-secondary" onclick="closeModal('modal-slot')" style="padding:.55rem 1rem;font-size:.82rem;">Cancelar</button>
+      <button class="btn-gold" onclick="closeModal('modal-slot');showToast('✅ Slot creado correctamente')">Crear slot</button>
     </div>
   </div>
 </div>
@@ -1359,145 +2118,156 @@ footer p { color:rgba(245,240,230,.25); font-size:.75rem; }
 <!-- MODAL: VALIDAR SKILL -->
 <div class="modal-overlay" id="modal-validate">
   <div class="modal">
-    <div class="modal-header"><div class="modal-title">Validar skills del alumno</div><button class="modal-close" onclick="closeModal('modal-validate')">✕</button></div>
+    <div class="modal-header"><div class="modal-title">Validar skill de alumno</div><button class="modal-close" onclick="closeModal('modal-validate')">✕</button></div>
     <div class="modal-body">
-      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;padding:.8rem;background:rgba(255,255,255,.04);border-radius:4px;">
-        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c5cbf,var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🏌️</div>
-        <div><div style="font-size:.88rem;color:var(--cream);font-weight:500;">Javier Morales</div><div style="font-size:.7rem;color:rgba(245,240,230,.35);">HCP 18.4 · Nivel 6 · 14 clases</div></div>
-        <div class="level-badge" style="margin-left:auto;">NV 6</div>
+      <div style="display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.04);border-radius:4px;padding:.8rem;margin-bottom:1rem;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7c5cbf,var(--gold));display:flex;align-items:center;justify-content:center;font-size:.95rem;">🏌️</div>
+        <div><div style="font-size:.88rem;color:var(--cream);font-weight:500;">Javier Morales</div><div style="font-size:.68rem;color:rgba(245,240,230,.35);">Nivel 6 · HCP 18.4 · 14 clases</div></div>
       </div>
-      <div style="font-size:.68rem;color:rgba(245,240,230,.35);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem;">Skills de Swing & Drive</div>
-      <div style="display:flex;flex-direction:column;gap:.6rem;">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;">
-          <span style="font-size:.82rem;color:rgba(245,240,230,.75);">Transferencia de peso</span>
-          <div style="display:flex;gap:.5rem;">
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(74,138,93,.3)';this.style.color='#8dd4a0';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(58,122,82,.3);background:transparent;color:rgba(245,240,230,.4);border-radius:2px;cursor:pointer;">✓ Validar</button>
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(217,119,6,.2)';this.style.color='#fbbf24';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(217,119,6,.2);background:transparent;color:rgba(245,240,230,.3);border-radius:2px;cursor:pointer;">⏳ En progreso</button>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;">
-          <span style="font-size:.82rem;color:rgba(245,240,230,.75);">Follow-through completo</span>
-          <div style="display:flex;gap:.5rem;">
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(74,138,93,.3)';this.style.color='#8dd4a0';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(58,122,82,.3);background:transparent;color:rgba(245,240,230,.4);border-radius:2px;cursor:pointer;">✓ Validar</button>
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(217,119,6,.2)';this.style.color='#fbbf24';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(217,119,6,.2);background:transparent;color:rgba(245,240,230,.3);border-radius:2px;cursor:pointer;">⏳ En progreso</button>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;">
-          <span style="font-size:.82rem;color:rgba(245,240,230,.75);">Drive consistente &gt;180m</span>
-          <div style="display:flex;gap:.5rem;">
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(74,138,93,.3)';this.style.color='#8dd4a0';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(58,122,82,.3);background:transparent;color:rgba(245,240,230,.4);border-radius:2px;cursor:pointer;">✓ Validar</button>
-            <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active-val'));this.classList.add('active-val');this.style.background='rgba(217,119,6,.2)';this.style.color='#fbbf24';" style="font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(217,119,6,.2);background:transparent;color:rgba(245,240,230,.3);border-radius:2px;cursor:pointer;">⏳ En progreso</button>
-          </div>
+      <div class="se-field"><label class="se-lbl">Skill a validar</label>
+        <select class="se-input">
+          <option>🎯 Hierros 6–9 · Pendiente</option>
+          <option>🏖️ Salida de bunker</option>
+          <option>⛳ Postura (refuerzo)</option>
+        </select>
+      </div>
+      <div class="se-field"><label class="se-lbl">Nivel conseguido (1–5)</label>
+        <div style="display:flex;gap:.5rem;">
+          <div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.classList.remove('sel'));this.classList.add('sel');" class="pp-btn" style="flex:1;padding:.5rem;">1</div>
+          <div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.classList.remove('sel'));this.classList.add('sel');" class="pp-btn" style="flex:1;padding:.5rem;">2</div>
+          <div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.classList.remove('sel'));this.classList.add('sel');" class="pp-btn sel" style="flex:1;padding:.5rem;">3</div>
+          <div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.classList.remove('sel'));this.classList.add('sel');" class="pp-btn" style="flex:1;padding:.5rem;">4</div>
+          <div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.classList.remove('sel'));this.classList.add('sel');" class="pp-btn" style="flex:1;padding:.5rem;">5</div>
         </div>
       </div>
-      <div class="se-field" style="margin-top:1rem;"><label class="se-lbl">Nota para el alumno (opcional)</label><input class="se-input" type="text" placeholder="Ej: Mejorar la cadera en el downswing"></div>
+      <div class="se-field"><label class="se-lbl">Notas del profesor</label><textarea class="se-input" style="resize:vertical;min-height:60px;" placeholder="Observaciones sobre el skill..."></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn-secondary" style="padding:.55rem 1.1rem;font-size:.82rem;" onclick="closeModal('modal-validate')">Cancelar</button>
-      <button class="btn-gold" onclick="closeModal('modal-validate');showToast('🎯 Skills validados · Javier recibe +150 XP y notificación')">Guardar validación</button>
+      <button class="btn-secondary" onclick="closeModal('modal-validate')" style="padding:.55rem 1rem;font-size:.82rem;">Cancelar</button>
+      <button class="btn-gold" onclick="closeModal('modal-validate');showToast('✅ Skill validado · Javier ha subido a Nivel 7 · +50 XP')">Validar skill ✓</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><div class="toast-msg" id="toast-msg"></div></div>
 
 <script>
-// ═══════════════════════════════════════
-//  ROUTER
-// ═══════════════════════════════════════
+// ═══ VIEW ROUTER ═══
 function showView(id) {
-  document.querySelectorAll('.view, .dash-view').forEach(v => {
-    v.classList.remove('active');
-  });
+  document.querySelectorAll('.view,.dash-view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
 
-// ═══════════════════════════════════════
-//  TOAST
-// ═══════════════════════════════════════
+// ═══ TOAST ═══
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
   document.getElementById('toast-msg').textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3400);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-// ═══════════════════════════════════════
-//  MODALS
-// ═══════════════════════════════════════
-function openModal(id) { document.getElementById(id).classList.add('visible'); }
-function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('visible'); });
+// ═══ MODALS ═══
+function openModal(id) {
+  document.getElementById(id).classList.add('visible');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('visible');
+}
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if(e.target===o) o.classList.remove('visible'); });
 });
 
-// ═══════════════════════════════════════
-//  TABS (slot editor)
-// ═══════════════════════════════════════
-function setTab(btn, id) {
-  const panel = btn.closest('.panel-body');
-  panel.querySelectorAll('.se-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  ['tab-horarios','tab-tarifas','tab-bloqueo'].forEach(tid => {
-    const el = document.getElementById(tid);
-    if (el) el.style.display = tid === id ? 'block' : 'none';
-  });
+// ═══ TABS ═══
+function setTab(el, id) {
+  el.closest('.panel-body').querySelectorAll('.se-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  el.closest('.panel-body').querySelectorAll('[id^="tab-"]').forEach(t=>t.style.display='none');
+  document.getElementById(id).style.display='block';
 }
 
-// ═══════════════════════════════════════
-//  WEEK CALENDAR
-// ═══════════════════════════════════════
+function setProfileTab(el, id) {
+  const tabsEl = el.closest('.profile-tabs');
+  tabsEl.querySelectorAll('.profile-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const contentEl = tabsEl.nextElementSibling;
+  contentEl.querySelectorAll(':scope > div').forEach(d=>d.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+// ═══ MOBILE MENU ═══
+function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+// ═══ REGISTRO ═══
+let regType = null;
+function selectRegType(el, type) {
+  document.querySelectorAll('.reg-type-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  regType = type;
+  const btn = document.getElementById('reg-next1');
+  btn.style.opacity = '1';
+  btn.style.pointerEvents = 'all';
+}
+function goRegStep(step) {
+  [1,2,3].forEach(s => {
+    document.getElementById('reg-step'+s).style.display = s===step?'block':'none';
+    document.getElementById('rdot'+s).classList.toggle('active', s<=step);
+  });
+  if(step===2 && regType) {
+    ['club','pro','alumno'].forEach(t => {
+      const el = document.getElementById('reg-extra-'+t);
+      if(el) el.style.display = t===regType?'block':'none';
+    });
+  }
+}
+
+// ═══ CALENDAR ═══
 const DAYS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-const HOURS = ['9:00','10:00','11:00','12:00','16:00','17:00','18:00'];
-const slotData = {
-  0:{0:'free',1:{s:'external',l:'Carlos'},2:'free',3:'closed',4:'free',5:'free',6:'empty'},
-  1:{0:'free',1:'free',2:{s:'external',l:'Laura'},3:'free',4:'taken',5:'free',6:'empty'},
-  2:{0:'closed',1:'closed',2:'closed',3:'closed',4:'free',5:'free',6:'empty'},
-  3:{0:'free',1:{s:'external',l:'Carlos'},2:'free',3:'free',4:'free',5:{s:'external',l:'Laura'},6:'empty'},
-  4:{0:'free',1:'free',2:'taken',3:'free',4:'free',5:'free',6:'free'},
-  5:{0:'closed',1:'closed',2:'closed',3:'closed',4:'closed',5:'closed',6:'empty'},
-  6:{0:'empty',1:'empty',2:'empty',3:'empty',4:'empty',5:'empty',6:'empty'},
-};
+const HOURS = ['09:00','10:00','11:00','12:00','16:00','17:00','18:00'];
+const STATE_LABELS = { free:'Libre', taken:'Socio', external:'EXT', closed:'Cerrado', empty:'' };
 const CYCLE = ['free','external','taken','closed'];
-const STATE_LABELS = {free:'LIBRE',taken:'SOCIO',external:'EXT',closed:'CERRADO',empty:''};
+
+const slotData = [
+  [{s:'free'},{s:'free'},{s:'taken'},{s:'external',l:'Javier M.'},{s:'free'},{s:'taken'},{s:'closed'}],
+  [{s:'external',l:'Pedro R.'},{s:'free'},{s:'free'},{s:'taken'},{s:'external'},{s:'free'},{s:'closed'}],
+  [{s:'taken'},{s:'closed'},{s:'external',l:'Ana G.'},{s:'taken'},{s:'free'},{s:'external'},{s:'closed'}],
+  [{s:'free'},{s:'taken'},{s:'free'},{s:'closed'},{s:'external'},{s:'free'},{s:'closed'}],
+  [{s:'free'},{s:'external',l:'Marta P.'},{s:'taken'},{s:'free'},{s:'external'},{s:'free'},{s:'closed'}],
+  [{s:'closed'},{s:'closed'},{s:'taken'},{s:'free'},{s:'external'},{s:'taken'},{s:'closed'}],
+  [{s:'free'},{s:'free'},{s:'free'},{s:'taken'},{s:'free'},{s:'external',l:'Luis V.'},{s:'closed'}],
+];
 
 function buildCalendar() {
   const grid = document.getElementById('week-grid');
-  if (!grid) return;
+  if(!grid) return;
   grid.innerHTML = '';
-  // Corner
-  const corner = document.createElement('div'); corner.className = 'wg-corner'; grid.appendChild(corner);
-  // Headers
-  DAYS.forEach((d,i) => {
-    const cell = document.createElement('div');
-    cell.className = 'wg-day' + (i===1?' today':'');
-    cell.innerHTML = `<div class="wg-day-name">${d}</div><div class="wg-day-num">${3+i}</div>`;
-    grid.appendChild(cell);
+  // Day headers
+  DAYS.forEach(d => {
+    const h = document.createElement('div');
+    h.style.cssText = 'text-align:center;font-size:.6rem;color:rgba(245,240,230,.3);padding:.25rem;text-transform:uppercase;';
+    h.textContent = d;
+    grid.appendChild(h);
   });
-  // Rows
-  HOURS.forEach((h, hi) => {
-    const tc = document.createElement('div'); tc.className = 'wg-time'; tc.textContent = h; grid.appendChild(tc);
-    DAYS.forEach((_, di) => {
+  HOURS.forEach((hour,hi) => {
+    DAYS.forEach((_,di) => {
       const raw = slotData[di][hi];
-      const state = typeof raw === 'object' ? raw.s : raw;
-      const label = typeof raw === 'object' ? raw.l : '';
-      const cell = document.createElement('div'); cell.className = `slot ${state}`;
-      const inner = document.createElement('div'); inner.className = 'slot-in';
-      inner.innerHTML = `<div class="slot-state">${STATE_LABELS[state]||''}</div>${label?`<div class="slot-name">${label}</div>`:''}`;
+      const state = typeof raw==='object'?raw.s:raw;
+      const label = typeof raw==='object'?raw.l:'';
+      const cell = document.createElement('div'); cell.className=`slot ${state}`;
+      const inner = document.createElement('div'); inner.className='slot-in';
+      inner.innerHTML=`<div class="slot-state">${STATE_LABELS[state]||''}</div>${label?`<div class="slot-name">${label}</div>`:''}`;
       cell.appendChild(inner);
-      if (state !== 'empty') {
-        cell.onclick = () => {
-          const cur = typeof slotData[di][hi] === 'object' ? slotData[di][hi].s : slotData[di][hi];
-          if (cur === 'empty') return;
-          const next = CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
-          slotData[di][hi] = next;
+      if(state!=='empty') {
+        cell.onclick=()=>{
+          const cur = typeof slotData[di][hi]==='object'?slotData[di][hi].s:slotData[di][hi];
+          if(cur==='empty') return;
+          const next=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
+          slotData[di][hi]=next;
           buildCalendar();
-          const msgs = {free:'Slot libre para externos',external:'Slot asignado como externo',taken:'Slot de socio',closed:'Slot cerrado'};
-          showToast('📅 ' + msgs[next]);
+          const msgs={free:'Slot libre para externos',external:'Slot asignado como externo',taken:'Slot de socio',closed:'Slot cerrado'};
+          showToast('📅 '+msgs[next]);
         };
       }
       grid.appendChild(cell);
@@ -1505,68 +2275,48 @@ function buildCalendar() {
   });
 }
 
-// ═══════════════════════════════════════
-//  PUESTOS
-// ═══════════════════════════════════════
-const pState = ['ps-ext','ps-ext','ps-free','ps-free','ps-taken','ps-free','ps-ext','ps-closed','ps-closed','ps-closed','ps-free','ps-ext','ps-taken','ps-free','ps-free'];
-const pLabel = ['EXT','EXT','LIBRE','LIBRE','SOCIO','LIBRE','EXT','MANT','MANT','MANT','LIBRE','EXT','SOCIO','LIBRE','LIBRE'];
-const P_CYCLE = ['ps-free','ps-ext','ps-taken'];
-const P_LABELS = {'ps-free':'LIBRE','ps-ext':'EXT','ps-taken':'SOCIO'};
+// ═══ PUESTOS ═══
+const pState=['ps-ext','ps-ext','ps-free','ps-free','ps-taken','ps-free','ps-ext','ps-closed','ps-closed','ps-closed','ps-free','ps-ext','ps-taken','ps-free','ps-free'];
+const pLabel=['EXT','EXT','LIBRE','LIBRE','SOCIO','LIBRE','EXT','MANT','MANT','MANT','LIBRE','EXT','SOCIO','LIBRE','LIBRE'];
+const P_CYCLE=['ps-free','ps-ext','ps-taken'];
+const P_LABELS={'ps-free':'LIBRE','ps-ext':'EXT','ps-taken':'SOCIO'};
 
 function buildPuestos() {
   const grid = document.getElementById('puestos-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  pState.forEach((s, i) => {
-    const item = document.createElement('div');
-    item.className = `ps ${s}`;
-    item.innerHTML = `<div class="ps-num">P${i+1}</div><div class="ps-lbl">${pLabel[i]}</div>`;
-    if (!s.includes('closed')) item.onclick = () => {
-      const idx = P_CYCLE.indexOf(pState[i]);
-      const next = idx === -1 ? 'ps-free' : P_CYCLE[(idx+1)%P_CYCLE.length];
-      pState[i] = next; pLabel[i] = P_LABELS[next];
+  if(!grid) return;
+  grid.innerHTML='';
+  pState.forEach((s,i)=>{
+    const item=document.createElement('div');
+    item.className=`ps ${s}`;
+    item.innerHTML=`<div class="ps-num">P${i+1}</div><div class="ps-lbl">${pLabel[i]}</div>`;
+    if(!s.includes('closed')) item.onclick=()=>{
+      const idx=P_CYCLE.indexOf(pState[i]);
+      const next=idx===-1?'ps-free':P_CYCLE[(idx+1)%P_CYCLE.length];
+      pState[i]=next; pLabel[i]=P_LABELS[next];
       buildPuestos();
       showToast(`P${i+1} → ${P_LABELS[next]}`);
     };
     grid.appendChild(item);
   });
 }
-function blockAllPuestos() {
-  pState.forEach((s,i)=>{ if(s!=='ps-closed'){pState[i]='ps-taken';pLabel[i]='CERR';} });
-  buildPuestos(); showToast('🚫 Todos los puestos cerrados para externos');
-}
-function openAllPuestos() {
-  pState.forEach((s,i)=>{ if(s!=='ps-closed'){pState[i]='ps-ext';pLabel[i]='EXT';} });
-  buildPuestos(); showToast('✅ Todos los puestos abiertos para externos');
+function blockAllPuestos(){pState.forEach((s,i)=>{if(s!=='ps-closed'){pState[i]='ps-taken';pLabel[i]='CERR';}});buildPuestos();showToast('🚫 Todos los puestos cerrados para externos');}
+function openAllPuestos(){pState.forEach((s,i)=>{if(s!=='ps-closed'){pState[i]='ps-ext';pLabel[i]='EXT';}});buildPuestos();showToast('✅ Todos los puestos abiertos para externos');}
+
+// ═══ TOGGLES ═══
+function toggleSwitch(el){el.classList.toggle('on');showToast(el.classList.contains('on')?'✅ Acceso externo activado':'🚫 Acceso externo desactivado');}
+
+// ═══ CAL NAVIGATION ═══
+function changeWeek(dir){
+  const el=document.getElementById('cal-label');
+  if(!el) return;
+  el.style.opacity='0';
+  setTimeout(()=>{el.textContent=dir>0?'10–16 Feb 2025':'27 Ene–2 Feb 2025';el.style.opacity='1';},180);
+  el.style.transition='opacity .18s';
 }
 
-// ═══════════════════════════════════════
-//  TOGGLES
-// ═══════════════════════════════════════
-function toggleSwitch(el) {
-  el.classList.toggle('on');
-  showToast(el.classList.contains('on') ? '✅ Acceso externo activado' : '🚫 Acceso externo desactivado');
-}
-
-// ═══════════════════════════════════════
-//  CAL NAVIGATION
-// ═══════════════════════════════════════
-function changeWeek(dir) {
-  const el = document.getElementById('cal-label');
-  if (!el) return;
-  el.style.opacity = '0';
-  setTimeout(() => {
-    el.textContent = dir > 0 ? '10–16 Feb 2025' : '27 Ene–2 Feb 2025';
-    el.style.opacity = '1';
-  }, 180);
-  el.style.transition = 'opacity .18s';
-}
-
-// ═══════════════════════════════════════
-//  PRO AGENDA
-// ═══════════════════════════════════════
-const agendaDays = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-const agendaData = [
+// ═══ PRO AGENDA ═══
+const agendaDays=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+const agendaData=[
   [{t:'10:00',type:'as-ext',n:'Javier M.'},{t:'12:00',type:'as-socio',n:'Ana G.'},{t:'16:00',type:'as-ext',n:'Pedro R.'}],
   [{t:'10:00',type:'as-free',n:'+'},{t:'11:00',type:'as-ext',n:'Marta P.'},{t:'17:00',type:'as-free',n:'+'}],
   [{t:'10:00',type:'as-blocked',n:'Torneo'},{t:'12:00',type:'as-blocked',n:'Torneo'},{t:'16:00',type:'as-socio',n:'Ana G.'}],
@@ -1576,31 +2326,23 @@ const agendaData = [
   [],
 ];
 
-function buildProAgenda() {
-  const grid = document.getElementById('pro-agenda');
-  if (!grid) return;
-  grid.innerHTML = '';
-  agendaDays.forEach((d, i) => {
-    const col = document.createElement('div'); col.className = 'agenda-day' + (i===1?' today':'');
-    let html = `<div class="agenda-day-head"><div class="agenda-day-name">${d}</div><div class="agenda-day-num">${3+i}</div></div><div class="agenda-slots">`;
-    if (agendaData[i].length === 0) {
-      html += `<div class="agenda-slot as-free" style="font-size:.6rem;color:rgba(245,240,230,.15);">Sin slots</div>`;
-    } else {
-      agendaData[i].forEach(s => {
-        html += `<div class="agenda-slot ${s.type}" onclick="showToast('${s.type==='as-free'?'📅 Slot disponible — puedes abrir agenda aquí':s.type==='as-blocked'?'🚫 Slot bloqueado por el club':'👤 '+s.n}')">
-          <div class="as-time">${s.t}</div><div class="as-name">${s.n}</div></div>`;
-      });
-    }
-    html += '</div>';
-    col.innerHTML = html;
+function buildProAgenda(){
+  const grid=document.getElementById('pro-agenda');
+  if(!grid) return;
+  grid.innerHTML='';
+  agendaDays.forEach((d,i)=>{
+    const col=document.createElement('div');col.className='agenda-day'+(i===1?' today':'');
+    let html=`<div class="agenda-day-head"><div class="agenda-day-name">${d}</div><div class="agenda-day-num">${3+i}</div></div><div class="agenda-slots">`;
+    if(agendaData[i].length===0){html+=`<div class="agenda-slot as-free" style="font-size:.6rem;color:rgba(245,240,230,.15);">Sin slots</div>`;}
+    else{agendaData[i].forEach(s=>{html+=`<div class="agenda-slot ${s.type}" onclick="showToast('${s.type==='as-free'?'📅 Slot disponible':'s.type==='as-blocked'?'🚫 Bloqueado por el club':'👤 '+s.n}')"><div class="as-time">${s.t}</div><div class="as-name">${s.n}</div></div>`;});}
+    html+='</div>';
+    col.innerHTML=html;
     grid.appendChild(col);
   });
 }
 
-// ═══════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
+// ═══ INIT ═══
+document.addEventListener('DOMContentLoaded',()=>{
   buildCalendar();
   buildPuestos();
   buildProAgenda();
