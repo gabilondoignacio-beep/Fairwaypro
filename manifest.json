@@ -1,0 +1,26 @@
+{
+  "name": "FairwayPro — Golf sin barreras",
+  "short_name": "FairwayPro",
+  "description": "Marketplace de golf en España: clases, partidas abiertas, torneos y networking.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#04140c",
+  "theme_color": "#04140c",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%2304140c'/%3E%3Ccircle cx='256' cy='336' r='74' fill='%23f4efe3'/%3E%3Crect x='248' y='90' width='16' height='180' rx='8' fill='%23d4af5a'/%3E%3Cpath d='M264 96 L392 136 L264 176 Z' fill='%23d4af5a'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%2304140c'/%3E%3Ccircle cx='256' cy='336' r='74' fill='%23f4efe3'/%3E%3Crect x='248' y='90' width='16' height='180' rx='8' fill='%23d4af5a'/%3E%3Cpath d='M264 96 L392 136 L264 176 Z' fill='%23d4af5a'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
